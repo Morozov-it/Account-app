@@ -1,0 +1,25 @@
+{
+  "users": [
+    {
+      "email": "user@mail.com",
+      "password": "$2a$10$0lvdlJTO2P7v1jnmCAH/1OYLVv7hRPU9o2lGtnRpPIRu6Q2xhB/K2",
+      "id": 1
+    },
+    {
+      "email": "admin@mail.com",
+      "password": "$2a$10$DyRA48jLytmd.hAxjeUkZOiVw0Nd3Utq3FH0qo576wPxTQVUuemyW",
+      "id": 2
+    }
+  ],
+  "contacts": [
+    {
+      "name": "My new contact",
+      "description": "my friend",
+      "phone": "8-800-2000-600",
+      "created_date": "2022-08-11T12:18:45.666Z",
+      "updated_date": "2022-08-11T12:18:45.666Z",
+      "userId": 1,
+      "id": 1
+    }
+  ]
+}
