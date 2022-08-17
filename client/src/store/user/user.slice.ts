@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { User } from "../../models"
 
-const initialState: User = {
+const initialState: User & { isAuth: boolean } = {
+    isAuth: false,
     email: null,
     id: null
 }
@@ -11,6 +12,7 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         setUser: (state, action: PayloadAction<User>) => {
+            state.isAuth = true
             state.email = action.payload.email
             state.id = action.payload.id
         },

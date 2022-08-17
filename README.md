@@ -8,7 +8,7 @@ json-server-auth
 ### Client:
 @reduxjs/toolkit
 react-redux
-
+react-router-dom@6
 
 ## Local launching of the project:
 node version - 16.15.1
