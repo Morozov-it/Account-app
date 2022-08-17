@@ -22,7 +22,6 @@ export const store = configureStore({
 setupListeners(store.dispatch)
 
 export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
 
 //usabled hooks
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector

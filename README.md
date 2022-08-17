@@ -9,6 +9,11 @@ json-server-auth
 @reduxjs/toolkit
 react-redux
 react-router-dom@6
+tailwindcss
+postcss
+autoprefixer
+@headlessui/react
+@heroicons/react
 
 ## Local launching of the project:
 node version - 16.15.1

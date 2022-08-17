@@ -4,7 +4,7 @@ import Navbar from './components/Navbar'
 
 const App = () => {
   return (
-    <div>
+    <div className='w-full h-full bg-white dark:bg-slate-600 text-black dark:text-white'>
       <Navbar />
       <AppRouter />
     </div>
