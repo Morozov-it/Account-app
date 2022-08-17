@@ -2,13 +2,16 @@
 
 ## Installed dependencies
 ### Server:
-npm i -D json-server json-server-auth
+json-server 
+json-server-auth
 
 ### Client:
+@reduxjs/toolkit
+react-redux
 
 
-## Local launching the project
-git clone(/url_repo/)
+## Local launching of the project:
+node version - 16.15.1
 
 ### client: >cd client 
     npm install
