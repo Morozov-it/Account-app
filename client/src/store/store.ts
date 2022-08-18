@@ -15,7 +15,9 @@ export const store = configureStore({
         user: userReducer,
         contacts: contactsReducer,
         [commonApi.reducerPath]: commonApi.reducer,
-    }
+    },
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware().concat(commonApi.middleware)
 })
 
 //enable refetchOnMount and refetchOnReconnect behaviors

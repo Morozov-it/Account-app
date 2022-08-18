@@ -6,6 +6,7 @@ json-server
 json-server-auth
 
 ### Client:
+axios
 @reduxjs/toolkit
 react-redux
 react-router-dom@6
@@ -14,6 +15,7 @@ postcss
 autoprefixer
 @headlessui/react
 @heroicons/react
+@tailwindcss/forms
 
 ## Local launching of the project:
 node version - 16.15.1

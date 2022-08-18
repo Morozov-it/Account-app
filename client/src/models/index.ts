@@ -39,3 +39,8 @@ export interface ContactsState {
     order: string | null
     search: string | null
 }
+
+export interface ErrorType {
+    status: number
+    data: string
+}

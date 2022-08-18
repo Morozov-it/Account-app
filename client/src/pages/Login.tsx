@@ -1,8 +1,12 @@
 import React from 'react'
+import LoginForm from '../components/LoginForm'
+import LayoutPage from '../components/LayoutPage'
 
-const Login = () => {
+const Login: React.FC = () => {
     return (
-        <div>Login</div>
+        <LayoutPage title='Login'>
+            <LoginForm />
+        </LayoutPage>
     )
 }
 

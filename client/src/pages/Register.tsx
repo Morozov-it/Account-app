@@ -1,8 +1,12 @@
 import React from 'react'
+import LayoutPage from '../components/LayoutPage'
+import RegisterForm from '../components/RegisterForm'
 
-const Register = () => {
+const Register: React.FC = () => {
     return (
-        <div>Register</div>
+        <LayoutPage title='Login'>
+            <RegisterForm />
+        </LayoutPage>
     )
 }
 

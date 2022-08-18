@@ -1,10 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { STORAGE_TOKEN_KEY } from "../../constants"
 import { User } from "../../models"
 
+const user: User | undefined = JSON.parse(localStorage.getItem(STORAGE_TOKEN_KEY) ?? 'null')?.user
+
 const initialState: User & { isAuth: boolean } = {
-    isAuth: false,
-    email: null,
-    id: null
+    isAuth: !!user,
+    email: user?.email ?? null,
+    id: user?.id ?? null
 }
 
 export const userSlice = createSlice({
@@ -16,7 +19,11 @@ export const userSlice = createSlice({
             state.email = action.payload.email
             state.id = action.payload.id
         },
-        logout: () => initialState
+        logout: (state) => {
+            state.isAuth = false
+            state.email = null
+            state.id = null
+        }
     }
 })
 

@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import { authRoutes, publicRoutes } from '../routes'
 import { useAppSelector } from '../store/store'
 
-const AppRouter = () => {
+const AppRouter: React.FC = () => {
     const isAuth = useAppSelector((state) => state.user.isAuth)
 
     return (

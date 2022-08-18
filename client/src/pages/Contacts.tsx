@@ -1,8 +1,13 @@
 import React from 'react'
+import LayoutPage from '../components/LayoutPage'
 
-const Contacts = () => {
+const Contacts: React.FC = () => {
     return (
-        <div>Contacts</div>
+        <LayoutPage title='Contacts'>
+            <div>
+                
+            </div>
+        </LayoutPage>
     )
 }
 

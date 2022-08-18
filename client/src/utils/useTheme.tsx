@@ -20,7 +20,7 @@ export const useTheme = (): [
             : document.documentElement.classList.remove('dark')
     }, [theme])
 
-    return [ theme, setTheme, getSystemTheme ]
+    return [theme, setTheme, getSystemTheme]
 }
 
 /* Into component:
