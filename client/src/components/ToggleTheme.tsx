@@ -8,7 +8,7 @@ const ToggleTheme: React.FC = () => {
     const [theme, setTheme] = useTheme()
 
     return (
-        <Menu as="div" className="ml-auto relative transition-all">
+        <Menu as="div" className="ml-auto relative transition-all ">
             <div>
                 <Menu.Button className="max-w-xs bg-gray-800 rounded-full text-gray-400 hover:text-white flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                 {theme === 'dark'
@@ -17,7 +17,7 @@ const ToggleTheme: React.FC = () => {
                 }
                 </Menu.Button>
             </div>
-            <Menu.Items className="origin-top-right absolute right-0 mt-2 w-24 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <Menu.Items className="origin-top-right absolute z-[100] right-0 mt-2 w-24 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                 <Menu.Item>
                     <div
                         onClick={() => setTheme('light')}

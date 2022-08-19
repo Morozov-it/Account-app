@@ -103,7 +103,7 @@ const Navbar: React.FC = () => {
                 </div>
             </div>
             {/* Mobile menu*/}
-            <Disclosure.Panel className="md:hidden bg-[rgba(31,41,55,0.95)] w-full">
+            <Disclosure.Panel className="md:hidden bg-[rgba(31,41,55,0.95)] w-full relative z-[10]">
                 <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                     {navigation.map((item) => (
                         <Disclosure.Button

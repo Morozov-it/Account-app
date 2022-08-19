@@ -13,6 +13,9 @@ const apiInstance = axios.create({
 export const login = (user: UserDTO) => {
     return apiInstance.post<ResponseUserApi>('/login', user)
 }
+export const register = (newUser: UserDTO) => {
+    return apiInstance.post<ResponseUserApi>('/register', newUser)
+}
 
 
 export const commonApi = createApi({
