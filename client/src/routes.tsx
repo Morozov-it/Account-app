@@ -6,6 +6,7 @@ const Contacts = lazy(() => import('./pages/Contacts'))
 const Home = lazy(() => import('./pages/Home'))
 const Login = lazy(() => import('./pages/Login'))
 const Register = lazy(() => import('./pages/Register'))
+const Settings = lazy(() => import('./pages/Settings'))
 
 interface Route {
     path: string
@@ -16,6 +17,10 @@ export const authRoutes: Route[] = [
     {
         path: Routes.contacts,
         element: <Contacts />,
+    },
+    {
+        path: Routes.settings,
+        element: <Settings />,
     }
 ]
 

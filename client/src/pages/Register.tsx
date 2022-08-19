@@ -6,9 +6,10 @@ import LayoutPage from '../components/LayoutPage'
 import { register } from '../store/common.api'
 import { Routes } from '../constants'
 import Alert from '../components/Alert'
-import { FormButton, FormInput, FormTitle, SpinnerBtn } from '../components/form'
+import { StyledButton, FormInput, FormTitle, SpinnerBtn } from '../components/form'
 
 const Register: React.FC = () => {
+    const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
@@ -17,6 +18,9 @@ const Register: React.FC = () => {
     const timer = useRef<number | null>(null)
     const navigate = useNavigate()
 
+    const onNameChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+        setName(e.target.value)
+    }, [])
     const onEmailChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value)
     }, [])
@@ -38,7 +42,7 @@ const Register: React.FC = () => {
             setError('')
             setLoading(true)
             try {
-                const payload = await register({ email, password })
+                const payload = await register({ name, email, password })
                 setSuccess(`
                     You have registered new user with email: ${payload.data.user.email}.
                     To cancel the transition to the login page, please close this alert!
@@ -64,6 +68,14 @@ const Register: React.FC = () => {
                 <form onSubmit={onSubmit} autoComplete='off' className="mt-8 space-y-6">
                     <div className="rounded-md shadow-sm -space-y-1 flex flex-col gap-3">
                         <FormInput
+                            value={name}
+                            onChange={onNameChange}
+                            name="name"
+                            type="name"
+                            required
+                            placeholder="Name"
+                        />
+                        <FormInput
                             value={email}
                             onChange={onEmailChange}
                             name="email"
@@ -82,17 +94,17 @@ const Register: React.FC = () => {
                     </div>
                     {success && <Alert color='green' text={success} onClose={cancelNavigate} />}
                     {error && <Alert color='red' text={error} onClose={() => setError('')} />}
-                    <FormButton type='submit'>
+                    <StyledButton type='submit' className='text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500'>
                         {loading
                             ?<SpinnerBtn />
                             :<>
-                                {(!email || !password) && <span className="absolute left-0 inset-y-0 flex items-center pl-3">
+                                {(!email || !password || !name) && <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                                     <LockClosedIcon className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" />
                                 </span>}
                                 <span>Sign up</span>
                             </>
                         }
-                    </FormButton>
+                    </StyledButton>
                 </form>
             </div>
         </LayoutPage>

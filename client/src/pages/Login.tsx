@@ -7,7 +7,7 @@ import { useActions } from '../store/store'
 import { login } from '../store/common.api'
 import { Routes, STORAGE_TOKEN_KEY } from '../constants'
 import Alert from '../components/Alert'
-import { FormButton, Checkbox, FormInput, FormTitle, SpinnerBtn } from '../components/form'
+import { StyledButton, Checkbox, FormInput, FormTitle, SpinnerBtn } from '../components/form'
 
 const Login: React.FC = () => {
     const [email, setEmail] = useState('')
@@ -48,7 +48,7 @@ const Login: React.FC = () => {
         <LayoutPage title='Login'>
             <div className="max-w-md w-full mx-auto px-2">
                 <FormTitle
-                    title='Sign in to your account'
+                    title='Log in to your account'
                     linkText='register to a new account'
                     linkUrl={Routes.register}
                 />
@@ -80,17 +80,17 @@ const Login: React.FC = () => {
                     </Checkbox>
                     
                     {error && <Alert color='red' text={error} onClose={() => setError('')} />}
-                    <FormButton type='submit'>
+                    <StyledButton type='submit' className='text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500'>
                         {loading
                             ?<SpinnerBtn />
                             :<>
                                 {(!email || !password) && <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                                     <LockClosedIcon className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" />
                                 </span>}
-                                <span>Sign in</span>
+                                <span>Log in</span>
                             </>
                         }
-                    </FormButton>
+                    </StyledButton>
                 </form>
             </div>
         </LayoutPage>

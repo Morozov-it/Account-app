@@ -8,6 +8,7 @@ export enum Routes {
     contacts = '/contacts',
     login = '/login',
     register = '/register',
+    settings = '/settings',
     notFound = "*",
 }
 

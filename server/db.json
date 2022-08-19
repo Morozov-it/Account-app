@@ -3,37 +3,14 @@
     {
       "email": "user@mail.com",
       "password": "$2a$10$8y5EDXLNWulcWM0yY6Wim.MY4izKOAsTVJKccvI4YWUAvwU8kGdC6",
+      "name": "User",
       "id": 1
     },
     {
-      "email": "admin@mail.com",
-      "password": "$2a$10$DyRA48jLytmd.hAxjeUkZOiVw0Nd3Utq3FH0qo576wPxTQVUuemyW",
+      "email": "new@mail.com",
+      "password": "$2a$10$DBlIgPukohwJuh9Mi6L4lutlPizAUZroKy06vvj2rPkOqSpuZD2Ne",
+      "name": "New name",
       "id": 2
-    },
-    {
-      "email": "user1@mail.com",
-      "password": "$2a$10$.1GEiJkZjD5SoPz5j5ozk.nIRZ7SllDrbmtTizopuERLNNYzGyxI6",
-      "id": 3
-    },
-    {
-      "email": "user2@mail.com",
-      "password": "$2a$10$Ic0YOAl9cOYoSsxhUo6M3ej7iz2/IAnT6c9mylKubBAjrRIq2rnQu",
-      "id": 4
-    },
-    {
-      "email": "user3@mail.com",
-      "password": "$2a$10$yRPKWcPnnkaBh7fEoumNyecyAQOyXS5LcS4FOzzUnDvbo.OWOl9x.",
-      "id": 5
-    },
-    {
-      "email": "user4@mail.com",
-      "password": "$2a$10$HJixor2UOOkV1f5MqyqZ2OWiKBPUZSvp45UEgX6pgaCwUpcbv8ARm",
-      "id": 6
-    },
-    {
-      "email": "user5@mail.com",
-      "password": "$2a$10$F0OEr9vt32RA4db4NnbnKO925KVuasTuKVqE7Ak0SX/wrJnVkOs6C",
-      "id": 7
     }
   ],
   "contacts": [

@@ -11,7 +11,7 @@ const Navbar: React.FC = () => {
     const { pathname } = useLocation()
     const navigate = useNavigate()
     
-    const { email, isAuth } = useAppSelector((state) => state.user)
+    const { name, email, isAuth } = useAppSelector((state) => state.user)
     const { logout } = useActions()
 
     const onLogout = () => {
@@ -19,6 +19,7 @@ const Navbar: React.FC = () => {
         logout()
         navigate(Routes.login)
     }
+    const onSettings = () => navigate(Routes.settings)
     const onLogin = () => navigate(Routes.login)
 
     return (
@@ -66,10 +67,18 @@ const Navbar: React.FC = () => {
                                     {isAuth
                                         ?<>
                                             <Menu.Item>
-                                                <div className='px-4 py-1  text-gray-700'>
-                                                    {email}
+                                                <div className='px-4 py-1 font-bold shadow-sm overflow-x-hidden text-gray-700'>
+                                                    {name}
                                                 </div>
-                                            </Menu.Item>    
+                                            </Menu.Item>
+                                            <Menu.Item>
+                                                <div
+                                                    onClick={onSettings}
+                                                    className='hover:bg-gray-100 px-4 py-2 text-sm text-gray-700 cursor-pointer'
+                                                >
+                                                    Settings
+                                                </div>
+                                            </Menu.Item>
                                             <Menu.Item>
                                                 <div
                                                     onClick={onLogout}
@@ -122,7 +131,7 @@ const Navbar: React.FC = () => {
                     <div className="flex items-center justify-center px-5">
                         <UserIcon className="h-8 w-8 rounded-full stroke-gray-400" />
                         <div className="ml-3">
-                            <div className="text-base font-medium leading-none text-white">email</div>
+                            <div className="text-base font-medium leading-none text-white">{name}</div>
                             <div className="text-sm font-medium leading-none text-gray-400">{email}</div>
                         </div>
                     </div>

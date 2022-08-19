@@ -6,6 +6,7 @@ const user: User | undefined = JSON.parse(localStorage.getItem(STORAGE_TOKEN_KEY
 
 const initialState: User & { isAuth: boolean } = {
     isAuth: !!user,
+    name: user?.name ?? null,
     email: user?.email ?? null,
     id: user?.id ?? null
 }
@@ -16,6 +17,7 @@ export const userSlice = createSlice({
     reducers: {
         setUser: (state, action: PayloadAction<User>) => {
             state.isAuth = true
+            state.name = action.payload.name
             state.email = action.payload.email
             state.id = action.payload.id
         },
