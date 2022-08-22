@@ -4,10 +4,11 @@ import { ContactsState } from "../../models"
 const initialState: ContactsState = {
     page: 1,
     limit: 10,
-    totalCount: 0,
+    totalCount: 152,
     sort: null,
     order: null,
-    search: null
+    search: null,
+    filter: null
 }
 
 export const contactsSlice = createSlice({
@@ -16,6 +17,12 @@ export const contactsSlice = createSlice({
     reducers: {
         changePage: (state, action: PayloadAction<number>) => {
             state.page = action.payload
+        },
+        incrementPage: (state) => {
+            state.page = state.page + 1
+        },
+        decrementPage: (state) => {
+            state.page = state.page - 1
         },
         changeLimit: (state, action: PayloadAction<number>) => {
             state.limit = action.payload
@@ -31,6 +38,9 @@ export const contactsSlice = createSlice({
         },
         changeSearch: (state, action: PayloadAction<string>) => {
             state.search = action.payload
+        },
+        changeFilter: (state, action: PayloadAction<string>) => {
+            state.filter = action.payload
         },
         reset: () => initialState
     }
