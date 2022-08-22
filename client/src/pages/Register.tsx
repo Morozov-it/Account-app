@@ -6,7 +6,7 @@ import LayoutPage from '../components/LayoutPage'
 import { register } from '../store/common.api'
 import { Routes } from '../constants'
 import Alert from '../components/Alert'
-import { StyledButton, FormInput, FormTitle, SpinnerInBtn } from '../components/form'
+import { FormButton, FormInput, FormTitle, SpinnerInBtn } from '../components/form'
 
 const Register: React.FC = () => {
     const [name, setName] = useState('')
@@ -95,7 +95,7 @@ const Register: React.FC = () => {
                     </div>
                     {success && <Alert color='green' text={success} onClose={cancelNavigate} />}
                     {error && <Alert color='red' text={error} onClose={() => setError('')} />}
-                    <StyledButton type='submit' className='text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500'>
+                    <FormButton type='submit' className='text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500'>
                         {loading
                             ?<SpinnerInBtn displayText/>
                             :<>
@@ -105,7 +105,7 @@ const Register: React.FC = () => {
                                 <span>Sign up</span>
                             </>
                         }
-                    </StyledButton>
+                    </FormButton>
                 </form>
             </div>
         </LayoutPage>

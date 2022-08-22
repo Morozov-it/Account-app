@@ -7,7 +7,7 @@ import { useActions } from '../store/store'
 import { login } from '../store/common.api'
 import { Routes, STORAGE_TOKEN_KEY, STORAGE_USER_KEY } from '../constants'
 import Alert from '../components/Alert'
-import { StyledButton, Checkbox, FormInput, FormTitle, SpinnerInBtn } from '../components/form'
+import { FormButton, Checkbox, FormInput, FormTitle, SpinnerInBtn } from '../components/form'
 
 const Login: React.FC = () => {
     const [email, setEmail] = useState('')
@@ -81,7 +81,7 @@ const Login: React.FC = () => {
                     </Checkbox>
                     
                     {error && <Alert color='red' text={error} onClose={() => setError('')} />}
-                    <StyledButton type='submit' className='text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500'>
+                    <FormButton type='submit' className='text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500'>
                         {loading
                             ?<SpinnerInBtn displayText/>
                             :<>
@@ -91,7 +91,7 @@ const Login: React.FC = () => {
                                 <span>Log in</span>
                             </>
                         }
-                    </StyledButton>
+                    </FormButton>
                 </form>
             </div>
         </LayoutPage>

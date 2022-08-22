@@ -1,6 +1,6 @@
 import React from 'react'
 import { Popover } from '@headlessui/react'
-import StyledButton from './StyledButton'
+import FormButton from './FormButton'
 import { CheckIcon, TrashIcon, XIcon } from '@heroicons/react/outline'
 import SpinnerInBtn from './SpinnerInBtn'
 
@@ -25,7 +25,7 @@ const DeletePopover: React.FC<Props> = ({ onYes, loading = false }) => {
                             <h3 className="font-semibold text-gray-900 dark:text-white text-center">Are you sure?</h3>
                         </div>
                         <div className="py-2 px-3 grid grid-cols-2 gap-4">
-                            <StyledButton
+                            <FormButton
                                 onClick={() => {
                                     onYes()
                                     close()
@@ -33,13 +33,13 @@ const DeletePopover: React.FC<Props> = ({ onYes, loading = false }) => {
                                 className='text-gray-900 dark:text-white border border-red-700 hover:shadow-md flex-[0_0_10%] h-7'>
                                 <CheckIcon className="h-5 w-5" />
                                 yes
-                            </StyledButton>
-                            <StyledButton
+                            </FormButton>
+                            <FormButton
                                 onClick={() => close()}
                                 className='text-gray-900 dark:text-white border border-gray-900 hover:shadow-md flex-[0_0_10%] h-7'>
                                 <XIcon className="h-5 w-5" />
                                 no
-                            </StyledButton>
+                            </FormButton>
                         </div>
                     </>
                 )}

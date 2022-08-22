@@ -7,6 +7,7 @@ json-server-auth
 
 ### Client:
 axios
+dayjs
 @reduxjs/toolkit
 react-redux
 react-router-dom@6

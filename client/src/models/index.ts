@@ -21,8 +21,8 @@ export interface Contact {
     name: string
     description: string | null
     phone: string
-    created_date: string
-    updated_date: string | null
+    created_date: Date
+    updated_date: Date | null
     group: Group | null
     blocked: boolean
     userId: number

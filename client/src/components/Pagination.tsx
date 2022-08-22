@@ -1,6 +1,7 @@
 import React from 'react'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline'
 import { classNames } from '../utils/classNames'
+import { PlainButton } from './list'
 
 interface Props {
     page: number
@@ -41,25 +42,12 @@ const Pagination: React.FC<Props> = ({ page, limit, onChange, totalCount, increm
         }
     }
 
-
     return (
         <div className="px-4 py-3 flex items-center justify-between border-t border-slate-200 dark:border-slate-500 sm:px-6">
             {/* mobile */}
             <div className="flex-1 flex justify-between sm:hidden">
-                <span
-                    onClick={onDecrement}
-                    className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium 
-                    rounded-md text-gray-700 bg-white hover:bg-gray-50 active:bg-indigo-50 active:border-indigo-500"
-                >
-                    Previous
-                </span>
-                <span
-                    onClick={onIncrement}
-                    className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium 
-                    rounded-md text-gray-700 bg-white hover:bg-gray-50 active:bg-indigo-50 active:border-indigo-500"
-                >
-                    Next
-                </span>
+                <PlainButton onClick={onDecrement}>Previous</PlainButton>
+                <PlainButton onClick={onIncrement}>Next</PlainButton>
             </div>
             {/* laptop */}
             <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
@@ -73,7 +61,7 @@ const Pagination: React.FC<Props> = ({ page, limit, onChange, totalCount, increm
                     <ul className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
                         <li
                             onClick={onDecrement}
-                            className="relative cursor-pointer inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                            className="relative cursor-pointer inline-flex items-center px-2 py-2 rounded-l-md border text-sm font-medium border-gray-300 hover:bg-gray-100 dark:hover:bg-gray-500"
                         >
                             <span className="sr-only">Previous</span>
                             <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
@@ -82,8 +70,8 @@ const Pagination: React.FC<Props> = ({ page, limit, onChange, totalCount, increm
                             <li key={index}
                                 className={classNames(
                                     number === page
-                                    ? 'z-10 bg-indigo-50 border-indigo-500 text-indigo-600'
-                                    : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50',
+                                    ? 'z-10 bg-indigo-50 dark:bg-indigo-200 border-indigo-500 text-indigo-600'
+                                    : 'border-gray-300 hover:bg-gray-100 dark:hover:bg-gray-500',
                                 'cursor-pointer relative inline-flex items-center px-4 py-2 border text-sm font-medium'
                             )}
                                 onClick={number ? onClick(number) : () => {}}>
@@ -92,7 +80,7 @@ const Pagination: React.FC<Props> = ({ page, limit, onChange, totalCount, increm
                         )}
                         <li
                             onClick={onIncrement}
-                            className="relative cursor-pointer inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                            className="relative cursor-pointer inline-flex items-center px-2 py-2 rounded-r-md border text-sm font-medium border-gray-300 hover:bg-gray-100 dark:hover:bg-gray-500"
                         >
                             <span className="sr-only">Previous</span>
                             <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />

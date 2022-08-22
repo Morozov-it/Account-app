@@ -1,5 +1,6 @@
 import React from 'react'
 import LayoutPage from '../components/LayoutPage'
+import { ContactList } from '../components/list'
 import Pagination from '../components/Pagination'
 import { useActions, useAppSelector } from '../store/store'
 
@@ -10,6 +11,7 @@ const Contacts: React.FC = () => {
     return (
         <LayoutPage title='Contacts'>
             <div className="max-w-7xl w-full mx-auto px-2">
+                <ContactList />
                 <Pagination
                     page={page}
                     limit={limit}
