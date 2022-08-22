@@ -2,8 +2,8 @@
   "users": [
     {
       "email": "user@mail.com",
-      "password": "$2a$10$8y5EDXLNWulcWM0yY6Wim.MY4izKOAsTVJKccvI4YWUAvwU8kGdC6",
-      "name": "User",
+      "password": "$2a$10$oMiUW911mbPySvOZasxEXuz1qO66inJanO6i2c1jEC01mecj2xOMy",
+      "name": "user",
       "id": 1
     },
     {

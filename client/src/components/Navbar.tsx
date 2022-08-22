@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { Routes, STORAGE_TOKEN_KEY, navigation, logoUrl } from '../constants'
+import { Routes, navigation, logoUrl } from '../constants'
 import { useActions, useAppSelector } from '../store/store'
 import { classNames } from '../utils/classNames'
 import { Disclosure, Menu } from '@headlessui/react'
@@ -15,7 +15,7 @@ const Navbar: React.FC = () => {
     const { logout } = useActions()
 
     const onLogout = () => {
-        localStorage.removeItem(STORAGE_TOKEN_KEY)
+        localStorage.clear()
         logout()
         navigate(Routes.login)
     }

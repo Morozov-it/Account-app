@@ -6,7 +6,7 @@ import LayoutPage from '../components/LayoutPage'
 import { register } from '../store/common.api'
 import { Routes } from '../constants'
 import Alert from '../components/Alert'
-import { StyledButton, FormInput, FormTitle, SpinnerBtn } from '../components/form'
+import { StyledButton, FormInput, FormTitle, SpinnerInBtn } from '../components/form'
 
 const Register: React.FC = () => {
     const [name, setName] = useState('')
@@ -89,6 +89,7 @@ const Register: React.FC = () => {
                             name="password"
                             type="password"
                             required
+                            minLength={6}
                             placeholder="Password"
                         />
                     </div>
@@ -96,7 +97,7 @@ const Register: React.FC = () => {
                     {error && <Alert color='red' text={error} onClose={() => setError('')} />}
                     <StyledButton type='submit' className='text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500'>
                         {loading
-                            ?<SpinnerBtn />
+                            ?<SpinnerInBtn displayText/>
                             :<>
                                 {(!email || !password || !name) && <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                                     <LockClosedIcon className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" />

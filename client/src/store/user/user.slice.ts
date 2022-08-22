@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { STORAGE_TOKEN_KEY } from "../../constants"
+import { STORAGE_USER_KEY } from "../../constants"
 import { User } from "../../models"
 
-const user: User | undefined = JSON.parse(localStorage.getItem(STORAGE_TOKEN_KEY) ?? 'null')?.user
+const user: User | null = JSON.parse(localStorage.getItem(STORAGE_USER_KEY) ?? 'null')
 
 const initialState: User & { isAuth: boolean } = {
     isAuth: !!user,

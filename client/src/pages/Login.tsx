@@ -5,9 +5,9 @@ import { AxiosError } from 'axios'
 import LayoutPage from '../components/LayoutPage'
 import { useActions } from '../store/store'
 import { login } from '../store/common.api'
-import { Routes, STORAGE_TOKEN_KEY } from '../constants'
+import { Routes, STORAGE_TOKEN_KEY, STORAGE_USER_KEY } from '../constants'
 import Alert from '../components/Alert'
-import { StyledButton, Checkbox, FormInput, FormTitle, SpinnerBtn } from '../components/form'
+import { StyledButton, Checkbox, FormInput, FormTitle, SpinnerInBtn } from '../components/form'
 
 const Login: React.FC = () => {
     const [email, setEmail] = useState('')
@@ -34,7 +34,8 @@ const Login: React.FC = () => {
             try {
                 const payload = await login({ email, password })
                 setUser(payload.data.user)
-                ref.current?.checked && localStorage.setItem(STORAGE_TOKEN_KEY, JSON.stringify(payload.data))
+                localStorage.setItem(STORAGE_TOKEN_KEY, payload.data.accessToken)
+                ref.current?.checked && localStorage.setItem(STORAGE_USER_KEY, JSON.stringify(payload.data.user))
                 navigate(Routes.contacts)
             } catch (e) {
                 setError((e as AxiosError)?.response?.data as string)
@@ -82,7 +83,7 @@ const Login: React.FC = () => {
                     {error && <Alert color='red' text={error} onClose={() => setError('')} />}
                     <StyledButton type='submit' className='text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500'>
                         {loading
-                            ?<SpinnerBtn />
+                            ?<SpinnerInBtn displayText/>
                             :<>
                                 {(!email || !password) && <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                                     <LockClosedIcon className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" />

@@ -6,10 +6,12 @@ interface Props {
     color: Color
     text: string
     onClose?: () => void
+    className?: string
 }
 
-const Alert: React.FC<Props> = ({ color, text, onClose }) => {
+const Alert: React.FC<Props> = ({ color, text, onClose, className = '' }) => {
     const divClasses = classNames(
+        className,
         'border px-4 py-2 rounded relative',
         color === 'red'
             ? 'bg-red-100 border-red-400 text-red-700'

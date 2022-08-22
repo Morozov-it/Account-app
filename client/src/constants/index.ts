@@ -1,5 +1,6 @@
 export const BASE_URL = 'http://localhost:5000'
-export const STORAGE_TOKEN_KEY = 'user'
+export const STORAGE_TOKEN_KEY = 'accessToken'
+export const STORAGE_USER_KEY = 'user'
 
 export const logoUrl = "https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=600"
 
