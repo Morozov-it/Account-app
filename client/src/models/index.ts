@@ -29,26 +29,38 @@ export interface Contact {
     id: number
 }
 
+export interface Filter {
+    [key: string]: string | number | null
+}
+
+export type IndexedObj = { [key: string]: string | number | null }
+
 export interface FetchContactsParams {
     _page: number
     _limit: number
-    _sort: string
-    _order: string
-    _filter: string
-    q: string
+    _sort?: string
+    _order?: string
+    q?: string
+    filter?: Filter
 }
 
 export interface ContactsState {
-    page: number
-    limit: number
+    _page: number
+    _limit: number
+    _sort: string | null
+    _order: string | null
+    q: string | null
+    filter: Filter | null
     totalCount: number
-    sort: string | null
-    order: string | null
-    search: string | null
-    filter: string | null
 }
 
 export interface ErrorType {
     status: number
     data: string
+}
+
+export type Modals = 'createContact' | 'editContact' | null
+
+export interface ModalState {
+    active: Modals
 }

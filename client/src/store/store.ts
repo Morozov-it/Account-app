@@ -4,16 +4,19 @@ import { setupListeners } from "@reduxjs/toolkit/dist/query"
 import { userActions, userReducer } from './user/user.slice'
 import { commonApi } from './common.api'
 import { contactsActions, contactsReducer } from './contacts/contacts.slice'
+import { modalsActions, modalsReducer } from './modals/modals.slice'
 
 const actions = {
     ...userActions,
     ...contactsActions,
+    ...modalsActions,
 }
 
 export const store = configureStore({
     reducer: {
         user: userReducer,
         contacts: contactsReducer,
+        modals: modalsReducer,
         [commonApi.reducerPath]: commonApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>

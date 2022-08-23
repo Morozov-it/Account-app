@@ -1,5 +1,7 @@
 import { Contact, FetchContactsParams } from '../../models'
 import { commonApi } from '../common.api'
+import { userActions } from '../user/user.slice'
+import { contactsActions } from './contacts.slice'
 
 export const contactsApi = commonApi.injectEndpoints({
     endpoints: build => ({
@@ -8,6 +10,19 @@ export const contactsApi = commonApi.injectEndpoints({
                 url: '/contacts',
                 params,
             }),
+            async onQueryStarted(params, { dispatch, queryFulfilled }) {
+                queryFulfilled
+                    .then((data) => {
+                        dispatch(contactsActions.changeTotalCount(Number(data.meta?.response?.headers.get('X-Total-Count'))))
+                    })
+                    .catch((data) => {
+                        if (data.error.status === 401) {
+                            dispatch(userActions.logout())
+                        } else {
+                            console.error(data.error)
+                        }
+                    })
+            },
             providesTags: [{ type: 'Contacts', id: 'List' }],
         }),
         createContact: build.mutation<Contact, Contact>({
@@ -16,7 +31,7 @@ export const contactsApi = commonApi.injectEndpoints({
                 method: 'POST',
                 body: newContact,
             }),
-            async onQueryStarted(newContact, { dispatch, queryFulfilled }) {
+            async onQueryStarted(params, { dispatch, queryFulfilled }) {
                 try {
                     const { data } = await queryFulfilled
                     dispatch(
