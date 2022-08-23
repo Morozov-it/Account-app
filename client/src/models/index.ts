@@ -29,28 +29,21 @@ export interface Contact {
     id: number
 }
 
-export interface Filter {
-    [key: string]: string | number | null
-}
-
+export type Sort = keyof Contact
+export type Order = 'asc' | 'desc'
 export type IndexedObj = { [key: string]: string | number | null }
 
-export interface FetchContactsParams {
-    _page: number
-    _limit: number
-    _sort?: string
-    _order?: string
-    q?: string
-    filter?: Filter
+export interface SortSelect {
+    name: Sort
+    title: string
 }
 
 export interface ContactsState {
     _page: number
     _limit: number
-    _sort: string | null
-    _order: string | null
+    _sort: Sort
+    _order: Order
     q: string | null
-    filter: Filter | null
     totalCount: number
 }
 

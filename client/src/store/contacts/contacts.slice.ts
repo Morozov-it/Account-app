@@ -1,13 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { ContactsState, Filter } from "../../models"
+import { ContactsState, Sort, Order } from "../../models"
 
 const initialState: ContactsState = {
     _page: 1,
     _limit: 10,
-    _sort: null,
-    _order: null,
+    _sort: 'created_date',
+    _order: 'asc',
     q: null,
-    filter: null,
     totalCount: 0,
 }
 
@@ -15,7 +14,7 @@ export const contactsSlice = createSlice({
     name: 'contacts',
     initialState,
     reducers: {
-        changePage: (state, action: PayloadAction<number>) => {
+        setPage: (state, action: PayloadAction<number>) => {
             state._page = action.payload
         },
         incrementPage: (state) => {
@@ -24,25 +23,28 @@ export const contactsSlice = createSlice({
         decrementPage: (state) => {
             state._page = state._page - 1
         },
-        changeLimit: (state, action: PayloadAction<number>) => {
+        setLimit: (state, action: PayloadAction<number>) => {
             state._limit = action.payload
         },
-        changeTotalCount: (state, action: PayloadAction<number>) => {
+        setTotalCount: (state, action: PayloadAction<number>) => {
             state.totalCount = action.payload
         },
-        changeSort: (state, action: PayloadAction<string>) => {
+        toggleSort: (state, action: PayloadAction<Sort>) => {
             state._sort = action.payload
         },
-        changeOrder: (state, action: PayloadAction<string>) => {
+        toggleOrder: (state, action: PayloadAction<Order>) => {
             state._order = action.payload
         },
-        changeSearch: (state, action: PayloadAction<string>) => {
+        search: (state, action: PayloadAction<string>) => {
             state.q = action.payload
         },
-        changeFilter: (state, action: PayloadAction<Filter>) => {
-            state.filter = action.payload
-        },
-        reset: () => initialState
+        reset: (state) => {
+            state._page = 1
+            state._limit = 10
+            state._sort = 'created_date'
+            state._order = 'asc'
+            state.q = null
+        }
     }
 })
 

@@ -1,19 +1,20 @@
-import { Contact, FetchContactsParams } from '../../models'
+import { Contact, IndexedObj } from '../../models'
 import { commonApi } from '../common.api'
 import { userActions } from '../user/user.slice'
 import { contactsActions } from './contacts.slice'
+import { getFetchParams } from '../../utils/getFetchParams'
 
 export const contactsApi = commonApi.injectEndpoints({
     endpoints: build => ({
-        fetchContacts: build.query<Contact[], Partial<FetchContactsParams>>({
+        fetchContacts: build.query<Contact[], IndexedObj>({
             query: (params) => ({
                 url: '/contacts',
-                params,
+                params: getFetchParams(params),
             }),
             async onQueryStarted(params, { dispatch, queryFulfilled }) {
                 queryFulfilled
                     .then((data) => {
-                        dispatch(contactsActions.changeTotalCount(Number(data.meta?.response?.headers.get('X-Total-Count'))))
+                        dispatch(contactsActions.setTotalCount(Number(data.meta?.response?.headers.get('X-Total-Count'))))
                     })
                     .catch((data) => {
                         if (data.error.status === 401) {
