@@ -19,7 +19,9 @@ const List = <T,>({ data, isLoading, isError, isSuccess, error, render }: Props<
     if (isLoading) {
         content = <Spinner />
     } else if (isSuccess && !!data) {
-        content = <ul className="w-full">{data?.map(render)}</ul>
+        content = data.length
+            ? <ul className="w-full">{data?.map(render)}</ul>
+            : <Alert color='yellow' text='No contacts found' className='text-center'/>
     } else if (isError) {
         content = <Alert className='mt-2 text-center' color='red' text={JSON.stringify(error)} />
     }

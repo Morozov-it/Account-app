@@ -3,7 +3,7 @@ import { IndexedObj } from "../models"
 export const getFetchParams = (params: IndexedObj) => {
     const result: IndexedObj = {}
     Object.keys(params).forEach((key) => {
-        if (params[key] !== null) {
+        if (!!params[key]) {
             result[key] = params[key]
         }
     })

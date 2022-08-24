@@ -1,18 +1,20 @@
 import React from 'react'
-import { sortSelect, orderSelect } from '../../constants'
-import { Sort, Order, Group, FilterType,  } from '../../models'
+import { sortSelect, orderSelect, limitSelect } from '../../constants'
+import { Sort, Order, Limit } from '../../models'
 import Filter from './Filter'
 import PlainButton from './PlainButton'
+import Search from './Search'
 import Select from './Select'
 
 interface Props {
-    limit: number
+    limit: Limit
     sort: Sort
     order: Order
-    search: string | null
-    filter: Array<FilterType<Group>>
+    filter: [string, boolean][]
+    onSearch: (q: string) => void
     onSortChange: (name: Sort) => void
     onOrderChange: (name: Order) => void
+    onLimitChange: (n: Limit) => void
     onReset: () => void
     onFilterChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
@@ -20,24 +22,20 @@ interface Props {
 const Toolbar: React.FC<Props> = ({
     limit,
     order,
-    search,
     sort,
     filter,
+    onSearch,
     onSortChange,
     onOrderChange,
+    onLimitChange,
     onReset,
     onFilterChange,
 }) => {
     return (
-        <div className="w-full flex items-end gap-2">
-            <div className="">
-                <input
-                    type="text"
-                    id="name"
-                    placeholder="search..."
-                    className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50"
-                />
-            </div>
+        <div className="w-full flex items-center gap-2">
+            <Search
+                onSearch={onSearch}
+            />
             <Select<Sort>
                 current={sort}
                 values={sortSelect}
@@ -52,7 +50,14 @@ const Toolbar: React.FC<Props> = ({
                 onChange={onOrderChange}
                 width={15}
             />
-            <Filter<Group>
+            <Select<Limit>
+                current={limit}
+                values={limitSelect}
+                lable='Limit'
+                onChange={onLimitChange}
+                width={15}
+            />
+            <Filter
                 lable='Group'
                 values={filter}
                 onChange={onFilterChange}

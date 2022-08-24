@@ -1,4 +1,4 @@
-import { Order, SelectType, Sort } from "../models"
+import { Limit, Order, SelectType, Sort } from "../models"
 
 export const BASE_URL = 'http://localhost:5000'
 export const STORAGE_TOKEN_KEY = 'accessToken'
@@ -30,4 +30,8 @@ export const sortSelect: Array<SelectType<Sort>> = [
 export const orderSelect: Array<SelectType<Order>> = [
     { name: 'asc', title: 'Asc' },
     { name: 'desc', title: 'Desc' },
+]
+export const limitSelect: Array<SelectType<Limit>> = [
+    { name: 5, title: '5' },
+    { name: 10, title: '10' },
 ]

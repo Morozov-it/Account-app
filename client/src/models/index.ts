@@ -31,6 +31,7 @@ export interface Contact {
 
 export type Sort = keyof Contact
 export type Order = 'asc' | 'desc'
+export type Limit = 5 | 10
 export type IndexedObj = { [key: string]: string | number | null }
 
 export interface SelectType<T> {
@@ -40,14 +41,13 @@ export interface SelectType<T> {
 export type GroupFilter = {
     [key in Group]: boolean
 }
-export type FilterType<T> = [T, boolean] 
 
 export interface ContactsState {
     _page: number
-    _limit: number
+    _limit: Limit
     _sort: Sort
     _order: Order
-    q: string | null
+    q: string
     totalCount: number
 }
 

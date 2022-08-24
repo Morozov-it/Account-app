@@ -31,4 +31,5 @@ export const commonApi = createApi({
     }),
     tagTypes: ['Contacts', 'User'],
     endpoints: _ => ({}),
+    keepUnusedDataFor: 1,
 })

@@ -23,7 +23,7 @@ const Navbar: React.FC = () => {
     const onLogin = () => navigate(Routes.login)
 
     return (
-        <Disclosure as="nav" className="bg-gray-800 w-full h-16 fixed">
+        <Disclosure as="nav" className="bg-gray-800 w-full h-16 fixed z-50">
         {({ open }) => (
             <>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -57,7 +57,7 @@ const Navbar: React.FC = () => {
                     </div>
                     <ToggleTheme />
                     <div className="hidden md:block">
-                        <Menu as="div" className="ml-3 relative transition-all">
+                        <Menu as="div" className="ml-3 transition-all">
                             <div>
                                 <Menu.Button className="max-w-xs bg-gray-800 rounded-full text-gray-400 hover:text-white flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                                     <UserIcon className="h-8 w-8 rounded-full" />
@@ -112,7 +112,7 @@ const Navbar: React.FC = () => {
                 </div>
             </div>
             {/* Mobile menu*/}
-            <Disclosure.Panel className="md:hidden bg-[rgba(31,41,55,0.95)] w-full relative z-[10]">
+            <Disclosure.Panel className="md:hidden bg-[rgba(31,41,55,0.90)] backdrop-blur w-full relative z-[10]">
                 <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                     {navigation.map((item) => (
                         <Disclosure.Button
