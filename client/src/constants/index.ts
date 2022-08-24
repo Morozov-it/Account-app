@@ -1,4 +1,4 @@
-import { SortSelect } from "../models"
+import { Order, SelectType, Sort } from "../models"
 
 export const BASE_URL = 'http://localhost:5000'
 export const STORAGE_TOKEN_KEY = 'accessToken'
@@ -20,10 +20,14 @@ export const navigation = [
     { name: 'Contacts', to: Routes.contacts },
 ]
 
-export const sortSelect: Array<SortSelect> = [
+export const sortSelect: Array<SelectType<Sort>> = [
     { name: 'name', title: 'Name' },
     { name: 'phone', title: 'Phone' },
     { name: 'description', title: 'Description' },
     { name: 'created_date', title: 'Created date' },
     { name: 'updated_date', title: 'Updated date' },
+]
+export const orderSelect: Array<SelectType<Order>> = [
+    { name: 'asc', title: 'Asc' },
+    { name: 'desc', title: 'Desc' },
 ]

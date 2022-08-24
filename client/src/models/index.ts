@@ -33,10 +33,14 @@ export type Sort = keyof Contact
 export type Order = 'asc' | 'desc'
 export type IndexedObj = { [key: string]: string | number | null }
 
-export interface SortSelect {
-    name: Sort
+export interface SelectType<T> {
+    name: T
     title: string
 }
+export type GroupFilter = {
+    [key in Group]: boolean
+}
+export type FilterType<T> = [T, boolean] 
 
 export interface ContactsState {
     _page: number

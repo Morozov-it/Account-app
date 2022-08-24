@@ -1,23 +1,36 @@
 import React from 'react'
-import { sortSelect } from '../../constants'
-import { Sort, SortSelect, Contact, Order } from '../../models'
+import { sortSelect, orderSelect } from '../../constants'
+import { Sort, Order, Group, FilterType,  } from '../../models'
+import Filter from './Filter'
 import PlainButton from './PlainButton'
-import RadioGroup from './RadioGroup'
 import Select from './Select'
 
 interface Props {
     limit: number
-    sort: keyof Contact
+    sort: Sort
     order: Order
     search: string | null
-    onSortChange: (name: keyof Contact) => void
+    filter: Array<FilterType<Group>>
+    onSortChange: (name: Sort) => void
+    onOrderChange: (name: Order) => void
+    onReset: () => void
+    onFilterChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const Toolbar: React.FC<Props> = ({ limit, order, search, sort, onSortChange }) => {
-    
+const Toolbar: React.FC<Props> = ({
+    limit,
+    order,
+    search,
+    sort,
+    filter,
+    onSortChange,
+    onOrderChange,
+    onReset,
+    onFilterChange,
+}) => {
     return (
         <div className="w-full flex items-end gap-2">
-            <div className="flex-[1_1_auto] flex flex-col">
+            <div className="">
                 <input
                     type="text"
                     id="name"
@@ -25,16 +38,28 @@ const Toolbar: React.FC<Props> = ({ limit, order, search, sort, onSortChange }) 
                     className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50"
                 />
             </div>
-            <Select<Sort, SortSelect>
+            <Select<Sort>
                 current={sort}
                 values={sortSelect}
                 lable='Sort by'
                 onChange={onSortChange}
+                width={20}
             />
-            
-            <RadioGroup />
+            <Select<Order>
+                current={order}
+                values={orderSelect}
+                lable='Order'
+                onChange={onOrderChange}
+                width={15}
+            />
+            <Filter<Group>
+                lable='Group'
+                values={filter}
+                onChange={onFilterChange}
+                width={10}
+            />
             <div>
-                <PlainButton>
+                <PlainButton onClick={onReset}>
                     Reset
                 </PlainButton>
             </div>
