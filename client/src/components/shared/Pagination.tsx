@@ -1,7 +1,7 @@
 import React from 'react'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline'
-import { classNames } from '../utils/classNames'
-import { PlainButton } from './controllers'
+import { classNames } from '../../utils/classNames'
+import { Button } from '../controllers'
 
 interface Props {
     page: number
@@ -46,8 +46,8 @@ const Pagination: React.FC<Props> = ({ page, limit, onChange, totalCount, increm
         <div className="px-4 py-3 flex items-center justify-between border-t border-slate-200 dark:border-slate-500 sm:px-6">
             {/* mobile */}
             <div className="flex-1 flex justify-between sm:hidden">
-                <PlainButton onClick={onDecrement}>Previous</PlainButton>
-                <PlainButton onClick={onIncrement}>Next</PlainButton>
+                <Button onClick={onDecrement}>Previous</Button>
+                <Button onClick={onIncrement}>Next</Button>
             </div>
             {/* laptop */}
             <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">

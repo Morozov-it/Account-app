@@ -1,8 +1,8 @@
 import React, { Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import { authRoutes, publicRoutes } from '../routes'
-import { useAppSelector } from '../store/store'
-import Spinner from './Spinner'
+import { authRoutes, publicRoutes } from '../../routes'
+import { useAppSelector } from '../../store/store'
+import Spinner from '../shared/Spinner'
 
 const AppRouter: React.FC = () => {
     const isAuth = useAppSelector((state) => state.user.isAuth)

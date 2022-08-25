@@ -1,8 +1,8 @@
 import React from 'react'
 import { SerializedError } from '@reduxjs/toolkit'
 import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query'
-import Alert from '../Alert'
-import Spinner from '../Spinner'
+import Spinner from './Spinner'
+import Alert from './Alert'
 
 interface Props<T> {
     data: T[] | undefined

@@ -1,14 +1,10 @@
 import React, { useCallback, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { LockClosedIcon } from '@heroicons/react/outline'
 import { AxiosError } from 'axios'
-import LayoutPage from '../components/LayoutPage'
-import Alert from '../components/Alert'
 import { useActions } from '../store/store'
 import { login } from '../store/common.api'
 import { Routes, STORAGE_TOKEN_KEY, STORAGE_USER_KEY } from '../constants'
-import { FormButton, FormInput, FormTitle } from '../components/form'
-import { Checkbox, SpinnerInBtn } from '../components/controllers'
+import { Alert, Checkbox, FormButton, FormInput, FormTitle, LayoutPage } from '../components'
 
 const Login: React.FC = () => {
     const [email, setEmail] = useState('')
@@ -82,17 +78,11 @@ const Login: React.FC = () => {
                     </Checkbox>
                     
                     {error && <Alert color='red' text={error} onClose={() => setError('')} />}
-                    <FormButton type='submit' className='text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500'>
-                        {loading
-                            ?<SpinnerInBtn displayText/>
-                            :<>
-                                {(!email || !password) && <span className="absolute left-0 inset-y-0 flex items-center pl-3">
-                                    <LockClosedIcon className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" />
-                                </span>}
-                                <span>Log in</span>
-                            </>
-                        }
-                    </FormButton>
+                    <FormButton
+                        text='Log in'
+                        loading={loading}
+                        lock={!email || !password}
+                    />
                 </form>
             </div>
         </LayoutPage>

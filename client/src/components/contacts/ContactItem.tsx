@@ -10,9 +10,10 @@ import {
 } from '@heroicons/react/outline'
 import { useActions } from '../../store/store'
 import { Contact } from '../../models'
-import { PlainButton, Switch } from '../controllers'
+import { Button, Switch } from '../controllers'
+import { useUpdateContactMutation } from '../../store/contacts/contacts.api'
 
-const Item: React.FC<Contact> = ({
+const ContactItem: React.FC<Contact> = ({
     name,
     phone,
     description,
@@ -22,9 +23,10 @@ const Item: React.FC<Contact> = ({
     blocked
 }) => {
     const { toggleModal } = useActions()
+    //const [updateContact, { isLoading: updateLoading, error: updateError }] = useUpdateContactMutation()
 
     return (
-        <li className="block lg:flex lg:items-center lg:justify-between my-2 px-6 py-2 border border-gray-100 dark:border-gray-400 w-full rounded-sm">
+        <li className="block lg:flex lg:items-center lg:justify-between my-2 px-4 py-2 border border-gray-100 dark:border-gray-400 w-full rounded">
             <div className="flex-1 min-w-0">
                 <h3 className="text-xl font-bold leading-5 sm:tracking-tight sm:truncate">
                     {name}
@@ -52,19 +54,21 @@ const Item: React.FC<Contact> = ({
                     </div>
                 </div>
             </div>
-            <div className="mt-5 flex lg:mt-0 lg:ml-4 gap-2">
-                <Switch checked={blocked} onChange={() => {}} label='block' />
-                <PlainButton onClick={() => toggleModal('createContact')}>
-                    <PencilIcon className="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
-                    Edit
-                </PlainButton>
-                <PlainButton>
-                    <TrashIcon className="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
-                    Delete
-                </PlainButton>
+            <div className="mt-5 flex flex-wrap items-center justify-between lg:mt-0 lg:ml-4 gap-2">
+                <Switch checked={blocked} onChange={() => { }} label='block' />
+                <div className='flex items-center justify-between gap-1'>
+                    <Button onClick={() => toggleModal('createContact')}>
+                        <PencilIcon className="h-4 w-4" aria-hidden="true" />
+                        Edit
+                    </Button>
+                    <Button>
+                        <TrashIcon className="h-4 w-4" aria-hidden="true" />
+                        Delete
+                    </Button>
+                </div>
             </div>
         </li>
     )
 }
 
-export default React.memo(Item)
+export default React.memo(ContactItem)

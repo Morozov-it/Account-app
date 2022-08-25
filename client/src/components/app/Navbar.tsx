@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { Routes, navigation, logoUrl } from '../constants'
-import { useActions, useAppSelector } from '../store/store'
-import { classNames } from '../utils/classNames'
+import { Routes, navigation, logoUrl } from '../../constants'
+import { useActions, useAppSelector } from '../../store/store'
+import { classNames } from '../../utils/classNames'
 import { Disclosure, Menu } from '@headlessui/react'
 import { MenuIcon, XIcon, UserIcon } from '@heroicons/react/outline'
 import ToggleTheme from './ToggleTheme'
@@ -57,7 +57,7 @@ const Navbar: React.FC = () => {
                     </div>
                     <ToggleTheme />
                     <div className="hidden md:block">
-                        <Menu as="div" className="ml-3 transition-all">
+                        <Menu as="div" className="ml-3 transition-all relative">
                             <div>
                                 <Menu.Button className="max-w-xs bg-gray-800 rounded-full text-gray-400 hover:text-white flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                                     <UserIcon className="h-8 w-8 rounded-full" />

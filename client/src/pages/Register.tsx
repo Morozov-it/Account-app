@@ -1,13 +1,9 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { LockClosedIcon } from '@heroicons/react/outline'
 import { AxiosError } from 'axios'
-import LayoutPage from '../components/LayoutPage'
-import Alert from '../components/Alert'
 import { register } from '../store/common.api'
 import { Routes } from '../constants'
-import { FormButton, FormInput, FormTitle } from '../components/form'
-import { SpinnerInBtn } from '../components/controllers'
+import { Alert, FormButton, FormInput, FormTitle, LayoutPage } from '../components'
 
 const Register: React.FC = () => {
     const [name, setName] = useState('')
@@ -96,17 +92,11 @@ const Register: React.FC = () => {
                     </div>
                     {success && <Alert color='green' text={success} onClose={cancelNavigate} />}
                     {error && <Alert color='red' text={error} onClose={() => setError('')} />}
-                    <FormButton type='submit' className='text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500'>
-                        {loading
-                            ?<SpinnerInBtn displayText/>
-                            :<>
-                                {(!email || !password || !name) && <span className="absolute left-0 inset-y-0 flex items-center pl-3">
-                                    <LockClosedIcon className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" />
-                                </span>}
-                                <span>Sign up</span>
-                            </>
-                        }
-                    </FormButton>
+                    <FormButton
+                        text='Sign up'
+                        loading={loading}
+                        lock={!email || !password || !name}
+                    />
                 </form>
             </div>
         </LayoutPage>

@@ -1,8 +1,8 @@
 import React from 'react'
-import { useTheme } from '../utils/useTheme'
 import { Menu } from '@headlessui/react'
 import { SunIcon, MoonIcon } from '@heroicons/react/outline'
-import { classNames } from '../utils/classNames'
+import { useTheme } from '../../utils/useTheme'
+import { classNames } from '../../utils/classNames'
 
 const ToggleTheme: React.FC = () => {
     const [theme, setTheme] = useTheme()

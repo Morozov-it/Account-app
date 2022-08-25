@@ -1,13 +1,10 @@
 import React, { useCallback, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useUpdateUserMutation, useDeleteUserMutation } from '../store/user/user.api'
-import LayoutPage from '../components/LayoutPage'
-import Alert from '../components/Alert'
-import { DeletePopover } from '../components/controllers'
-import { EditedContent } from '../components/form'
 import { Routes } from '../constants'
 import { ErrorType, UserDTO } from '../models'
 import { useActions, useAppSelector } from '../store/store'
+import { Alert, PopoverBtn, EditedContent, LayoutPage } from '../components'
 
 const Settings: React.FC = () => {
     const navigate = useNavigate()
@@ -41,18 +38,21 @@ const Settings: React.FC = () => {
 
     return (
         <LayoutPage title='Settings'>
-            <div className="bg-white dark:bg-slate-700 mx-2 md:mx-0 border shadow overflow-hidden sm:rounded-lg sm:mx-0">
-                <div className="px-4 py-5 sm:px-6 bg-white dark:bg-slate-600">
+            <div className="bg-white dark:bg-slate-700 border shadow overflow-hidden rounded">
+                <div className="flex items-center justify-between px-4 py-5 bg-white dark:bg-slate-600">
                     <h3 className="text-lg leading-6 font-medium text-gray-900 dark:text-slate-100">{user.name}</h3>
-                    <p className="mt-1 max-w-2xl text-sm text-gray-500 dark:text-slate-300">Personal details</p>
+                    <PopoverBtn offset='right-0 top-9' onYes={onDelete} loading={deleteLoading}>
+                        Delete
+                    </PopoverBtn>
                 </div>
                 <div className="border-t border-gray-200">
+                    <p className="mt-1 max-w-2xl text-sm text-gray-500 dark:text-slate-300 px-4 pt-2">Personal details</p>
                     <dl>
-                        <div className="bg-white dark:bg-slate-700 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <div className="bg-white dark:bg-slate-700 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4">
                             <dt className="text-sm font-medium text-gray-500 dark:text-slate-100">Id</dt>
                             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-slate-100">{user.id}</dd>
                         </div>
-                        <div className="bg-gray-50 dark:bg-slate-600 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <div className="bg-gray-50 dark:bg-slate-600 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4">
                             <dt className="text-sm font-medium text-gray-500 dark:text-slate-100">Full name</dt>
                             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-slate-100">
                                 <EditedContent
@@ -66,7 +66,7 @@ const Settings: React.FC = () => {
                                 />
                             </dd>
                         </div>
-                        <div className="bg-white dark:bg-slate-700 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <div className="bg-white dark:bg-slate-700 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4">
                             <dt className="text-sm font-medium text-gray-500 dark:text-slate-100">Email address</dt>
                             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-slate-100">
                                 <EditedContent
@@ -80,7 +80,7 @@ const Settings: React.FC = () => {
                                 />
                             </dd>
                         </div>
-                        <div className="bg-gray-50 dark:bg-slate-600 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <div className="bg-gray-50 dark:bg-slate-600 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4">
                             <dt className="text-sm font-medium text-gray-500 dark:text-slate-100">Password</dt>
                             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-slate-100">
                                 <EditedContent
@@ -99,9 +99,6 @@ const Settings: React.FC = () => {
             </div>
             {updateError && <Alert className='mt-2' color='red' text={JSON.stringify((updateError as ErrorType)?.data)} />}
             {deleteError && <Alert className='mt-2' color='red' text={JSON.stringify((deleteError as ErrorType)?.data)} />}
-            <div className='mt-2 mx-2 sm:mx-0'>
-                <DeletePopover onYes={onDelete} loading={deleteLoading} />
-            </div>
         </LayoutPage>
     )
 }

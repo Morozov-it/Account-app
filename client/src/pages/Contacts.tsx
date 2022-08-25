@@ -1,11 +1,8 @@
 import React, { useCallback, useMemo } from 'react'
-import LayoutPage from '../components/LayoutPage'
-import { Item, List } from '../components/contacts'
-import Pagination from '../components/Pagination'
+import { ContactItem, LayoutPage, List, Pagination, Toolbar } from '../components'
 import { Contact, Group, Limit, Order, Sort } from '../models'
 import { useFetchContactsQuery } from '../store/contacts/contacts.api'
 import { useActions, useAppSelector } from '../store/store'
-import Toolbar from '../components/contacts/Toolbar'
 import { getFilteredContacts } from '../utils/getFilteredContacts'
 
 const Contacts: React.FC = () => {
@@ -60,7 +57,7 @@ const Contacts: React.FC = () => {
     }, [reset])
 
     const render = useCallback((item: Contact) => (
-        <Item key={item.id} {...item} />
+        <ContactItem key={item.id} {...item} />
     ), [])
 
     return (

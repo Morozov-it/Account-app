@@ -1,9 +1,7 @@
 import React from 'react'
 import { sortSelect, orderSelect, limitSelect } from '../../constants'
 import { Sort, Order, Limit } from '../../models'
-import Filter from '../controllers/Filter'
-import PlainButton from '../controllers/PlainButton'
-import { Select, Search } from '../controllers'
+import { Filter, Search, Select, Button } from '../controllers'
 
 interface Props {
     limit: Limit
@@ -33,7 +31,7 @@ const Toolbar: React.FC<Props> = ({
     return (
         <div className="w-full flex items-center flex-wrap md:flex-nowrap gap-2">
             <Search onSearch={onSearch} />
-            <div className='flex w-full lg:w-[60%] xl:w-[50%] items-center justify-between flex-wrap sm:flex-nowrap gap-2'>
+            <div className='flex items-center justify-between flex-wrap sm:flex-nowrap gap-2'>
                 <Select<Sort>
                     current={sort}
                     values={sortSelect}
@@ -61,9 +59,9 @@ const Toolbar: React.FC<Props> = ({
                     onChange={onFilterChange}
                     width={10}
                 />
-                <PlainButton onClick={onReset}>
+                <Button onClick={onReset}>
                     Reset
-                </PlainButton>
+                </Button>
             </div>
         </div>
     )

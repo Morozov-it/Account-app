@@ -1,9 +1,7 @@
 import { CheckIcon, PencilAltIcon, XIcon } from '@heroicons/react/outline'
 import React, { useState } from 'react'
 import { UserDTO } from '../../models'
-import FormInput from './FormInput'
-import FormButton from './FormButton'
-import { SpinnerInBtn } from '../controllers'
+import { Button, Input, SpinnerInBtn } from '../controllers'
 
 interface Props {
     name: string
@@ -33,35 +31,36 @@ const EditedContent: React.FC<Props> = ({ name, text, type, edited, isLoading, s
 
     if (edited) {
         return (
-            <form onSubmit={onSubmit} onReset={onReset} className='flex gap-1'>
-                <FormInput
-                    type={type}
-                    value={value}
-                    onChange={(e) => setValue(e.target.value)}
-                    required
-                    labelClasses='flex-[1_0_70%]' />
-                <FormButton
-                    type='submit'
-                    className='text-green-700 border border-green-700 hover:shadow-md flex-[1_0_10%]'>
-                    {isLoading ? <SpinnerInBtn />: <CheckIcon className="h-5 w-5" />}
-                </FormButton>
-                <FormButton
-                    type='reset'
-                    className='text-gray-800 dark:text-slate-100 border border-gray-700 dark:border-slate-100 hover:shadow-md flex-[1_0_10%]'>
-                    <XIcon className="h-5 w-5" />
-                </FormButton>
+            <form onSubmit={onSubmit} onReset={onReset} className='flex flex-wrap justify-between gap-1'>
+                <label className='flex-grow'>
+                    <Input
+                        className='w-full'
+                        type={type}
+                        value={value}
+                        onChange={(e) => setValue(e.target.value)}
+                        required
+                    />
+                </label>
+                <div className='flex items-center gap-1'>
+                    <Button
+                        type='submit'
+                        className='text-green-700 border border-green-700 hover:shadow-md'>
+                        {isLoading ? <SpinnerInBtn />: <CheckIcon className="h-5 w-5" />}
+                    </Button>
+                    <Button type='reset'>
+                        <XIcon className="h-5 w-5" />
+                    </Button>
+                </div>
             </form>
         )
     } else {
         return (
-            <div className='flex items-center'>
-                <div className='flex-[1_0_80%]'>{text}</div>
-                <FormButton 
-                    onClick={() => setEdited(name)}
-                    className='text-gray-800 dark:text-slate-100 border border-gray-700 dark:border-slate-100 hover:shadow-md'>
+            <div className='flex flex-wrap justify-between gap-1'>
+                <div className='flex-grow'>{text}</div>
+                <Button onClick={() => setEdited(name)}>
                     <PencilAltIcon className="h-5 w-5" />
                     Edit
-                </FormButton>
+                </Button>
             </div>
         )
     }

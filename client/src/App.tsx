@@ -1,7 +1,5 @@
 import React, { useCallback } from 'react'
-import AppRouter from './components/AppRouter'
-import CreateModal from './components/contacts/CreateModal'
-import Navbar from './components/Navbar'
+import { Navbar, AppRouter, CreateModal } from './components'
 import { useActions, useAppSelector } from './store/store'
 
 const App: React.FC = () => {

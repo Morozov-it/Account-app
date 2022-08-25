@@ -13,7 +13,7 @@ const LayoutPage: React.FC<Props> = ({ title, children }) => {
                     <h1 className="text-3xl tracking-tight font-bold text-gray-900 dark:text-slate-100">{title}</h1>
                 </div>
             </header>
-            <main className="flex-grow w-full max-w-7xl mx-auto py-6 sm:px-6 lg:px-8 overflow-y-auto">
+            <main className="flex-grow w-full max-w-7xl mx-auto px-2 py-4 overflow-y-auto">
                 {children}
             </main>
         </section>
