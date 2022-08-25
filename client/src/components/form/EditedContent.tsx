@@ -2,8 +2,8 @@ import { CheckIcon, PencilAltIcon, XIcon } from '@heroicons/react/outline'
 import React, { useState } from 'react'
 import { UserDTO } from '../../models'
 import FormInput from './FormInput'
-import SpinnerInBtn from './SpinnerInBtn'
 import FormButton from './FormButton'
+import { SpinnerInBtn } from '../controllers'
 
 interface Props {
     name: string

@@ -24,14 +24,14 @@ const Select = <T,>({ lable, values, current, onChange, width }: Props<T>) => {
                     />
                 </Listbox.Button>
                 <Listbox.Options className={
-                    classNames("absolute right-0 z-10 mt-1 bg-white border border-gray-200 shadow max-h-56 rounded-md py-1 text-base overflow-auto focus:outline-none sm:text-sm",
+                    classNames("absolute left-0 z-10 mt-1 bg-white border border-gray-200 shadow max-h-56 rounded-md py-1 text-base overflow-auto focus:outline-none sm:text-sm",
                         width ? `w-[${width}]` : 'w-full')}>
                     {values.map((value, i) => (
                         <Listbox.Option
                             key={i}
                             className={({ active }) =>
                             classNames(active ? 'text-white bg-indigo-600' : 'text-gray-900',
-                                'cursor-default select-none relative py-2 pl-3 pr-9')}
+                                'cursor-default select-none relative py-1 pl-3 pr-9')}
                             value={value.name}
                         >
                             {({ selected, active }) => (

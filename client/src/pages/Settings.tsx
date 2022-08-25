@@ -1,12 +1,13 @@
 import React, { useCallback, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Alert from '../components/Alert'
-import { DeletePopover, EditedContent } from '../components/form'
+import { useUpdateUserMutation, useDeleteUserMutation } from '../store/user/user.api'
 import LayoutPage from '../components/LayoutPage'
+import Alert from '../components/Alert'
+import { DeletePopover } from '../components/controllers'
+import { EditedContent } from '../components/form'
 import { Routes } from '../constants'
 import { ErrorType, UserDTO } from '../models'
 import { useActions, useAppSelector } from '../store/store'
-import { useUpdateUserMutation, useDeleteUserMutation } from '../store/user/user.api'
 
 const Settings: React.FC = () => {
     const navigate = useNavigate()

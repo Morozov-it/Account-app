@@ -1,6 +1,6 @@
 import React from 'react'
 import { Popover } from '@headlessui/react'
-import FormButton from './FormButton'
+import { FormButton } from '../form'
 import { CheckIcon, TrashIcon, XIcon } from '@heroicons/react/outline'
 import SpinnerInBtn from './SpinnerInBtn'
 
@@ -12,7 +12,7 @@ interface Props {
 const DeletePopover: React.FC<Props> = ({ onYes, loading = false }) => {
     return (
         <Popover className="relative sm:max-w-[20%]">
-            <Popover.Button className='text-gray-800 dark:text-slate-100 border border-gray-700 dark:border-slate-100 bg-gray-50 dark:bg-slate-600 hover:shadow-md group relative w-full flex items-center justify-center py-2 px-4 text-sm font-medium rounded-md focus:outline-none'>
+            <Popover.Button className='text-gray-800 dark:text-slate-100 border border-gray-700 dark:border-slate-100 bg-gray-50 dark:bg-slate-600 hover:shadow-md group relative w-full flex items-center justify-center py-1 px-4 text-sm font-medium rounded-md focus:outline-none'>
                 {loading
                     ?<SpinnerInBtn displayText />
                     :<><TrashIcon className="h-5 w-5" /><span>Delete</span></>

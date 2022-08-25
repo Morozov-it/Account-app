@@ -1,7 +1,7 @@
 import React from 'react'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline'
 import { classNames } from '../utils/classNames'
-import { PlainButton } from './contacts'
+import { PlainButton } from './controllers'
 
 interface Props {
     page: number

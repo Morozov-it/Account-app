@@ -5,13 +5,14 @@ import { classNames } from '../../utils/classNames'
 interface Props {
     checked: boolean
     onChange: () => void
+    label?: string
 }
 
-const BlockSwitch: React.FC<Props> = ({ checked, onChange }) => {
+const StyledSwitch: React.FC<Props> = ({ checked, onChange, label }) => {
     return (
         <Switch.Group>
             <div className="flex items-center">
-                <Switch.Label className="mr-1 font-medium">blocked</Switch.Label>
+                {label && <Switch.Label className="mr-1 font-medium">{label}</Switch.Label>}
                 <Switch
                     checked={checked}
                     onChange={onChange}
@@ -19,7 +20,7 @@ const BlockSwitch: React.FC<Props> = ({ checked, onChange }) => {
                         checked ? 'bg-blue-600' : 'bg-gray-200 dark:bg-gray-500',
                         'relative inline-flex h-6 w-11 items-center rounded-full')}
                     >
-                    <span className="sr-only">Enable notifications</span>
+                    <span className="sr-only">{label}</span>
                     <span
                         className={classNames(
                             checked ? 'translate-x-6' : 'translate-x-1',
@@ -32,4 +33,4 @@ const BlockSwitch: React.FC<Props> = ({ checked, onChange }) => {
     )
 }
 
-export default React.memo(BlockSwitch)
+export default React.memo(StyledSwitch)

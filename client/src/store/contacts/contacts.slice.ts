@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { ContactsState, Sort, Order, Limit } from "../../models"
+import { ContactsState, Sort, Order, Limit, Group } from "../../models"
 
 const initialState: ContactsState = {
     _page: 1,
@@ -7,6 +7,12 @@ const initialState: ContactsState = {
     _sort: 'created_date',
     _order: 'asc',
     q: '',
+    search: '',
+    filter: {
+        Family: false,
+        Friends: false,
+        Work: false,
+    },
     totalCount: 0,
 }
 
@@ -38,13 +44,19 @@ export const contactsSlice = createSlice({
         search: (state, action: PayloadAction<string>) => {
             state.q = action.payload
         },
-        reset: (state) => {
-            state._page = 1
-            state._limit = 5
-            state._sort = 'created_date'
-            state._order = 'asc'
-            state.q = ''
-        }
+        changeSearch: (state, action: PayloadAction<string>) => {
+            state.search = action.payload
+        },
+        setFilter: (state, action: PayloadAction<Group>) => {
+            state.filter = {
+                ...state.filter,
+                [action.payload]: !state.filter[action.payload]
+            }
+        },
+        reset: (state) => ({
+            ...initialState,
+            totalCount: state.totalCount
+        })
     }
 })
 

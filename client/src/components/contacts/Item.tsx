@@ -1,12 +1,26 @@
 import React from 'react'
 import dayjs from 'dayjs'
-import { CalendarIcon, MenuAlt1Icon, PencilIcon, PhoneIcon, TrashIcon, UserGroupIcon } from '@heroicons/react/outline'
-import { Contact } from '../../models'
-import PlainButton from './PlainButton'
-import BlockSwitch from './BlockSwitch'
+import {
+    CalendarIcon,
+    MenuAlt1Icon,
+    PencilIcon,
+    PhoneIcon,
+    TrashIcon,
+    UserGroupIcon
+} from '@heroicons/react/outline'
 import { useActions } from '../../store/store'
+import { Contact } from '../../models'
+import { PlainButton, Switch } from '../controllers'
 
-const Item: React.FC<Contact> = ({ name, phone, description, created_date, updated_date, group, blocked }) => {
+const Item: React.FC<Contact> = ({
+    name,
+    phone,
+    description,
+    created_date,
+    updated_date,
+    group,
+    blocked
+}) => {
     const { toggleModal } = useActions()
 
     return (
@@ -39,7 +53,7 @@ const Item: React.FC<Contact> = ({ name, phone, description, created_date, updat
                 </div>
             </div>
             <div className="mt-5 flex lg:mt-0 lg:ml-4 gap-2">
-                <BlockSwitch checked={blocked} onChange={() => {}} />
+                <Switch checked={blocked} onChange={() => {}} label='block' />
                 <PlainButton onClick={() => toggleModal('createContact')}>
                     <PencilIcon className="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
                     Edit

@@ -3,11 +3,12 @@ import { useNavigate } from 'react-router-dom'
 import { LockClosedIcon } from '@heroicons/react/outline'
 import { AxiosError } from 'axios'
 import LayoutPage from '../components/LayoutPage'
+import Alert from '../components/Alert'
 import { useActions } from '../store/store'
 import { login } from '../store/common.api'
 import { Routes, STORAGE_TOKEN_KEY, STORAGE_USER_KEY } from '../constants'
-import Alert from '../components/Alert'
-import { FormButton, Checkbox, FormInput, FormTitle, SpinnerInBtn } from '../components/form'
+import { FormButton, FormInput, FormTitle } from '../components/form'
+import { Checkbox, SpinnerInBtn } from '../components/controllers'
 
 const Login: React.FC = () => {
     const [email, setEmail] = useState('')

@@ -48,6 +48,8 @@ export interface ContactsState {
     _sort: Sort
     _order: Order
     q: string
+    search: string
+    filter: GroupFilter
     totalCount: number
 }
 

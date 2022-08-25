@@ -3,10 +3,11 @@ import { useNavigate } from 'react-router-dom'
 import { LockClosedIcon } from '@heroicons/react/outline'
 import { AxiosError } from 'axios'
 import LayoutPage from '../components/LayoutPage'
+import Alert from '../components/Alert'
 import { register } from '../store/common.api'
 import { Routes } from '../constants'
-import Alert from '../components/Alert'
-import { FormButton, FormInput, FormTitle, SpinnerInBtn } from '../components/form'
+import { FormButton, FormInput, FormTitle } from '../components/form'
+import { SpinnerInBtn } from '../components/controllers'
 
 const Register: React.FC = () => {
     const [name, setName] = useState('')
