@@ -1,6 +1,8 @@
 import React, { useCallback } from 'react'
-import { Navbar, AppRouter, CreateModal } from './components'
-import { useActions, useAppSelector } from './store/store'
+import { useActions, useAppSelector } from '../../store/store'
+import { CreateModal } from '../contacts'
+import AppRouter from './AppRouter'
+import Navbar from './Navbar'
 
 const App: React.FC = () => {
   const activeModal = useAppSelector((state) => state.modals.active)

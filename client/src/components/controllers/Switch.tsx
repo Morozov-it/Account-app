@@ -6,14 +6,16 @@ interface Props {
     checked: boolean
     onChange: () => void
     label?: string
+    disabled?: boolean
 }
 
-const StyledSwitch: React.FC<Props> = ({ checked, onChange, label }) => {
+const StyledSwitch: React.FC<Props> = ({ checked, onChange, label, disabled }) => {
     return (
         <Switch.Group>
             <div className="flex items-center">
                 {label && <Switch.Label className="mr-1 font-medium">{label}</Switch.Label>}
                 <Switch
+                    disabled={disabled}
                     checked={checked}
                     onChange={onChange}
                     className={classNames(

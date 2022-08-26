@@ -13,6 +13,7 @@ interface Props {
     onOrderChange: (name: Order) => void
     onLimitChange: (n: Limit) => void
     onReset: () => void
+    onCreate: () => void
     onFilterChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
@@ -26,8 +27,11 @@ const Toolbar: React.FC<Props> = ({
     onOrderChange,
     onLimitChange,
     onReset,
+    onCreate,
     onFilterChange,
 }) => {
+    console.log('toolbar')
+    
     return (
         <div className="w-full flex items-center flex-wrap md:flex-nowrap gap-2">
             <Search onSearch={onSearch} />
@@ -35,7 +39,7 @@ const Toolbar: React.FC<Props> = ({
                 <Select<Sort>
                     current={sort}
                     values={sortSelect}
-                    lable='Sort by'
+                    lable='Sort'
                     onChange={onSortChange}
                     width={20}
                 />
@@ -61,6 +65,9 @@ const Toolbar: React.FC<Props> = ({
                 />
                 <Button onClick={onReset}>
                     Reset
+                </Button>
+                <Button onClick={onCreate}>
+                    Create
                 </Button>
             </div>
         </div>

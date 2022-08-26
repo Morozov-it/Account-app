@@ -17,7 +17,8 @@ const Search: React.FC<Props> = ({ onSearch }) => {
         return () => {
             clearTimeout(id)
         }
-    }, [search, onSearch])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [search])
 
     return (
         <Input

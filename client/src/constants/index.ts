@@ -1,4 +1,4 @@
-import { Limit, Order, SelectType, Sort } from "../models"
+import { Group, Limit, Order, SelectType, Sort } from "../models"
 
 export const BASE_URL = 'http://localhost:5000'
 export const STORAGE_TOKEN_KEY = 'accessToken'
@@ -20,6 +20,13 @@ export const navigation = [
     { name: 'Contacts', to: Routes.contacts },
 ]
 
+export const groupSelect: Array<SelectType<Group | null>> = [
+    { name: null, title: '' },
+    { name: 'Family', title: 'Family' },
+    { name: 'Friends', title: 'Friends' },
+    { name: 'Work', title: 'Work' },
+]
+
 export const sortSelect: Array<SelectType<Sort>> = [
     { name: 'name', title: 'Name' },
     { name: 'phone', title: 'Phone' },
@@ -35,3 +42,5 @@ export const limitSelect: Array<SelectType<Limit>> = [
     { name: 5, title: '5' },
     { name: 10, title: '10' },
 ]
+
+export const phonePattern = "[+][0-9]{1,}-[0-9]{3}-[0-9]{3}-[0-9]{4}"

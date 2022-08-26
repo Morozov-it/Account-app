@@ -1,12 +1,12 @@
 import React, { lazy } from "react"
 import { Navigate } from "react-router-dom"
-import { Routes } from "./constants"
+import { Routes } from "../constants"
 
-const Contacts = lazy(() => import('./pages/Contacts'))
-const Home = lazy(() => import('./pages/Home'))
-const Login = lazy(() => import('./pages/Login'))
-const Register = lazy(() => import('./pages/Register'))
-const Settings = lazy(() => import('./pages/Settings'))
+const Contacts = lazy(() => import('../pages/Contacts'))
+const Home = lazy(() => import('../pages/Home'))
+const Login = lazy(() => import('../pages/Login'))
+const Register = lazy(() => import('../pages/Register'))
+const Settings = lazy(() => import('../pages/Settings'))
 
 interface Route {
     path: string

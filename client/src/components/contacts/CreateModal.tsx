@@ -1,5 +1,15 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
+import dayjs from 'dayjs'
+import { Button, Input } from '../controllers'
+import { useActions, useAppSelector } from '../../store/store'
+import { FormButton, FormInput } from '../form'
+import Textarea from '../controllers/Textarea'
+import { Alert } from '../shared'
+import FormSelect from '../form/FormSelect'
+import { ErrorType, Group } from '../../models'
+import { groupSelect, phonePattern } from '../../constants'
+import { useCreateContactMutation } from '../../store/contacts/contacts.api'
 
 interface Props {
     open: boolean
@@ -7,6 +17,32 @@ interface Props {
 }
 
 const CreateModal: React.FC<Props> = ({ open, onClose }) => {
+    const userId = useAppSelector((state) => state.user.id)
+    const { name, description, phone, group } = useAppSelector((state) => state.modals.createInfo)
+    const { setCreateInfo, resetCreateInfo } = useActions()
+    const [create, { isLoading, error }] = useCreateContactMutation()
+
+    const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        if (!isLoading && !!userId) {
+            await create({
+                userId,
+                created_date: dayjs(),
+                updated_date: null,
+                blocked: false,
+                group,
+                name,
+                phone,
+                description
+            })
+            onClose()
+            resetCreateInfo()
+        }
+    }
+    const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+        const { name, value } = e.target
+        setCreateInfo({ [name]: name === 'group' && value === '' ? null : value })
+    }, [setCreateInfo])
 
     return (
         <Transition appear show={open} as={React.Fragment}>
@@ -33,28 +69,68 @@ const CreateModal: React.FC<Props> = ({ open, onClose }) => {
                             leaveFrom="opacity-100 scale-100"
                             leaveTo="opacity-0 scale-95"
                         >
-                            <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                            <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-md border bg-white dark:bg-slate-700 text-black dark:text-white border-gray-300 p-4 text-left align-middle shadow-xl transition-all">
                                 <Dialog.Title
                                     as="h3"
-                                    className="text-lg font-medium leading-6 text-gray-900"
+                                    className="text-lg font-medium leading-6"
                                     >
-                                    Payment successful
+                                    Create a new contact
                                 </Dialog.Title>
-                                <div className="mt-2">
-                                    <p className="text-sm text-gray-500">
-                                        Your payment has been successfully submitted. We’ve sent
-                                        you an email with all of the details of your order.
-                                    </p>
+
+                                <form onSubmit={onSubmit} autoComplete='off' className="mt-2 space-y-3">
+                                    <div className="rounded-md shadow-sm -space-y-1 flex flex-col gap-3">
+                                        <FormInput
+                                            value={name}
+                                            onChange={onChange}
+                                            name="name"
+                                            type="text"
+                                            required
+                                            placeholder="Name"
+                                        />
+                                        <Textarea
+                                            value={description}
+                                            onChange={onChange}
+                                            name="description"
+                                            placeholder="Description"
+                                        />
+                                        <label className="block text-sm font-medium">
+                                            Phone
+                                            <Input
+                                                type='tel'
+                                                value={phone}
+                                                onChange={onChange}
+                                                name="phone"
+                                                required
+                                                placeholder="+1-012-345-6789"
+                                                pattern={phonePattern}
+                                            />
+                                        </label>
+                                        <FormSelect<Group>
+                                            value={group ?? ''}
+                                            onChange={onChange}
+                                            name="group"
+                                            options={groupSelect}>
+                                            Group
+                                        </FormSelect>
                                     </div>
-                                    <div className="mt-4">
-                                    <button
-                                        type="button"
-                                        className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                                        onClick={onClose}
-                                    >
-                                        Got it, thanks!
-                                    </button>
-                                </div>
+                                    {error && <Alert color='red' text={JSON.stringify((error as ErrorType)?.data)} />}
+                                    <div className="mt-4 flex gap-1">
+                                        <FormButton
+                                            text='Create'
+                                            loading={false}
+                                            lock={!name || !phone}
+                                        />
+                                        <Button
+                                            type="reset"
+                                            onClick={() => {
+                                                onClose()
+                                                resetCreateInfo()
+                                            }}
+                                        >
+                                            Cancel
+                                        </Button>
+                                    </div>
+                                </form>
                             </Dialog.Panel>
                         </Transition.Child>
                     </div>

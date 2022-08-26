@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import { authRoutes, publicRoutes } from '../../routes'
+import { authRoutes, publicRoutes } from '../../utils/routes'
 import { useAppSelector } from '../../store/store'
 import Spinner from '../shared/Spinner'
 

@@ -27,7 +27,8 @@ const Contacts: React.FC = () => {
         toggleOrder,
         setLimit,
         setFilter,
-        reset
+        reset,
+        toggleModal,
     } = useActions()
 
     const { data: contacts, isLoading, isFetching, isSuccess, isError, error } = useFetchContactsQuery(
@@ -55,6 +56,9 @@ const Contacts: React.FC = () => {
     const onReset = useCallback(() => {
         reset()
     }, [reset])
+    const onCreate = useCallback(() => {
+        toggleModal('createContact')
+    }, [toggleModal])
 
     const render = useCallback((item: Contact) => (
         <ContactItem key={item.id} {...item} />
@@ -73,6 +77,7 @@ const Contacts: React.FC = () => {
                     onOrderChange={onOrderChange}
                     onLimitChange={onLimitChange}
                     onReset={onReset}
+                    onCreate={onCreate}
                     onFilterChange={onFilterChange}
                 />
                 <List<Contact>

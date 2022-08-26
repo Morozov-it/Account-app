@@ -1,3 +1,5 @@
+import { Dayjs } from "dayjs"
+
 export interface User {
     name: string | null
     email: string | null
@@ -19,15 +21,17 @@ export type Group = 'Friends' | 'Family' | 'Work'
 
 export interface Contact {
     name: string
-    description: string | null
+    description: string
     phone: string
-    created_date: Date
-    updated_date: Date | null
+    created_date: Date | Dayjs
+    updated_date: Date | Dayjs | null
     group: Group | null
     blocked: boolean
     userId: number
     id: number
 }
+
+export type NewContact = Pick<Contact, 'name' | 'description' | 'phone' | 'group'>
 
 export type Sort = keyof Contact
 export type Order = 'asc' | 'desc'
@@ -62,4 +66,5 @@ export type Modals = 'createContact' | 'editContact' | null
 
 export interface ModalState {
     active: Modals
+    createInfo: NewContact
 }

@@ -24,44 +24,45 @@ export const contactsApi = commonApi.injectEndpoints({
                         }
                     })
             },
-            providesTags: [{ type: 'Contacts', id: 'List' }],
+            providesTags: [{ type: 'Contacts' }]
         }),
-        createContact: build.mutation<Contact, Contact>({
+        createContact: build.mutation<Contact, Omit<Contact, 'id'>>({
             query: (newContact) => ({
                 url: '/contacts',
                 method: 'POST',
                 body: newContact,
             }),
-            async onQueryStarted(params, { dispatch, queryFulfilled }) {
-                try {
-                    const { data } = await queryFulfilled
-                    dispatch(
-                        contactsApi.util.updateQueryData('fetchContacts', {
-                            _page: 1,
-                            _limit: 10,
-                        }, draft => {
-                            draft.unshift(data)
-                        })
-                    )
-                } catch {
-                    console.error('contactsApi createContact error')
-                }
-            },
+            invalidatesTags: [{ type: 'Contacts' }],
         }),
-        updateContact: build.mutation<Contact, Partial<Contact> >({
-            query: (updatedContact) => ({
-                url: `/contacts/${updatedContact.id}`,
+        blockContact: build.mutation<Contact, { id: number, blocked: boolean, params: IndexedObj} >({
+            query: ({ id, blocked }) => ({
+                url: `/contacts/${id}`,
                 method: 'PATCH',
-                body: updatedContact,
+                body: { id, blocked },
             }),
-            invalidatesTags: ['Contacts'],
+            //optimistic update
+            async onQueryStarted({ id, blocked, params }, { dispatch, queryFulfilled }) {
+                const patchResult = dispatch(
+                    contactsApi.util.updateQueryData('fetchContacts', params, draft => {
+                        const contact = draft.find(contact => contact.id === id)
+                        if (contact) {
+                            contact.blocked = blocked
+                        }
+                    }))
+                try {
+                    await queryFulfilled
+                } catch {
+                    patchResult.undo()
+                    console.error('contactsApi updateContact error')
+                }
+            }
         }),
         deleteContact: build.mutation<null, number>({
             query: (id) => ({
                 url: `/contacts/${id}`,
                 method: 'DELETE',
             }),
-            invalidatesTags: ['Contacts'],
+            invalidatesTags: [{ type: 'Contacts' }],
         }),
     }),
 })
@@ -70,5 +71,5 @@ export const {
     useCreateContactMutation,
     useDeleteContactMutation,
     useFetchContactsQuery,
-    useUpdateContactMutation
+    useBlockContactMutation
 } = contactsApi
