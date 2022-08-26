@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useCallback, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useUpdateUserMutation, useDeleteUserMutation } from '../store/user/user.api'
@@ -26,7 +27,7 @@ const Settings: React.FC = () => {
                 console.error(e)
             }
         }
-    }, [setUser, updateLoading, updateUser, user.id])
+    }, [updateLoading, user.id])
 
     const onDelete = useCallback( async () => {
         if (!deleteLoading && user.id) {
@@ -34,7 +35,7 @@ const Settings: React.FC = () => {
             localStorage.clear()
             navigate(Routes.login)
         }
-    }, [deleteLoading, deleteUser, navigate, user.id]) 
+    }, [deleteLoading, user.id]) 
 
     return (
         <LayoutPage title='Settings'>

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useCallback, useMemo } from 'react'
 import { ContactItem, LayoutPage, List, Pagination, Toolbar } from '../components'
 import { Contact, Group, Limit, Order, Sort } from '../models'
@@ -35,30 +36,32 @@ const Contacts: React.FC = () => {
         { _page, _limit, _sort, _order, q, userId }
     )
     const filteredContacts = useMemo(() => getFilteredContacts(filter, contacts), [filter, contacts])
+    const filterCatalog = useMemo(() => Object.entries(filter), [filter])
 
     const onSearch = useCallback((value: string) => {
         search(value)
         setPage(1)
-    }, [search, setPage])
+    }, [])
     const onFilterChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         const name = e.target.name as Group
         setFilter(name)
-    }, [setFilter])
+    }, [])
     const onSortChange = useCallback((name: Sort) => {
         toggleSort(name)
-    }, [toggleSort])
-    const onLimitChange = useCallback((n: Limit) => {
-        setLimit(n)
-    }, [setLimit])
+    }, [])
+    const onLimitChange = useCallback((num: Limit) => {
+        setLimit(num)
+        setPage(1)
+    }, [])
     const onOrderChange = useCallback((name: Order) => {
         toggleOrder(name)
-    }, [toggleOrder])
+    }, [])
     const onReset = useCallback(() => {
         reset()
-    }, [reset])
+    }, [])
     const onCreate = useCallback(() => {
         toggleModal('createContact')
-    }, [toggleModal])
+    }, [])
 
     const render = useCallback((item: Contact) => (
         <ContactItem key={item.id} {...item} />
@@ -71,7 +74,7 @@ const Contacts: React.FC = () => {
                     limit={_limit}
                     sort={_sort}
                     order={_order}
-                    filter={Object.entries(filter)}
+                    filter={filterCatalog}
                     onSearch={onSearch}
                     onSortChange={onSortChange}
                     onOrderChange={onOrderChange}

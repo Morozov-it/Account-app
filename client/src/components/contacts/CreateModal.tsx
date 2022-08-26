@@ -34,7 +34,7 @@ const CreateModal: React.FC<Props> = ({ open, onClose }) => {
                 name,
                 phone,
                 description
-            })
+            }).unwrap()
             onClose()
             resetCreateInfo()
         }

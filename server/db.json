@@ -79,6 +79,17 @@
       "phone": "+38-800-900-5000",
       "description": "",
       "id": 6
+    },
+    {
+      "userId": 1,
+      "created_date": "2022-08-26T14:47:15.255Z",
+      "updated_date": null,
+      "blocked": false,
+      "group": null,
+      "name": "Rendering",
+      "phone": "+38-100-200-3000",
+      "description": "",
+      "id": 7
     }
   ]
 }
