@@ -32,7 +32,6 @@ export interface Contact {
 }
 
 export type NewContact = Pick<Contact, 'name' | 'description' | 'phone' | 'group'>
-
 export type Sort = keyof Contact
 export type Order = 'asc' | 'desc'
 export type Limit = 5 | 10
@@ -57,6 +56,15 @@ export interface ContactsState {
     totalCount: number
 }
 
+export interface ContactsParams {
+    _page: number
+    _limit: Limit
+    _sort: keyof Contact
+    _order: Order
+    userId: number | null
+    q?: string
+}
+
 export interface ErrorType {
     status: number
     data: string
@@ -66,5 +74,6 @@ export type Modals = 'createContact' | 'editContact' | null
 
 export interface ModalState {
     active: Modals
-    createInfo: NewContact
+    createdInfo: NewContact
+    editedContact: Contact | null
 }

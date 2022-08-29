@@ -21,4 +21,4 @@ const AppRouter: React.FC = () => {
     )
 }
 
-export default React.memo(AppRouter)
+export default AppRouter

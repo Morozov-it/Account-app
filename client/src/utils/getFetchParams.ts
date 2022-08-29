@@ -1,11 +1,11 @@
-import { IndexedObj } from "../models"
+import { ContactsParams } from "../models"
 
-export const getFetchParams = (params: IndexedObj) => {
-    const result: IndexedObj = {}
-    Object.keys(params).forEach((key) => {
+export const getFetchParams = (params: ContactsParams) => {
+    let result = {} as any
+    (Object.keys(params) as Array<keyof ContactsParams>).forEach((key) => {
         if (!!params[key]) {
             result[key] = params[key]
         }
     })
-    return result
+    return result as ContactsParams
 }

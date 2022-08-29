@@ -5,7 +5,7 @@ import { SpinnerInBtn } from '../controllers'
 interface Props {
     text: string
     loading: boolean
-    lock: boolean
+    lock?: boolean
 }
 
 const FormButton: React.FC<Props> = ({ text, loading, lock }) => {

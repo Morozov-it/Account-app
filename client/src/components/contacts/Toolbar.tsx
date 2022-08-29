@@ -30,8 +30,8 @@ const Toolbar: React.FC<Props> = ({
     onCreate,
     onFilterChange,
 }) => {
-    console.log('toolbar')
     
+
     return (
         <div className="w-full flex items-center flex-wrap md:flex-nowrap gap-2">
             <Search onSearch={onSearch} />

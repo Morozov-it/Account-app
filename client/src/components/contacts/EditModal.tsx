@@ -1,57 +1,58 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useCallback } from 'react'
 import dayjs from 'dayjs'
 import { Button, Input, Textarea } from '../controllers'
-import { useActions, useAppSelector } from '../../store/store'
 import { FormButton, FormInput, FormSelect } from '../form'
 import { Alert, Modal } from '../shared'
-import { ErrorType, Group } from '../../models'
+import { ErrorType, Group, ContactsParams } from '../../models'
 import { groupSelect, phonePattern } from '../../constants'
-import { useCreateContactMutation } from '../../store/contacts/contacts.api'
+import { useUpdateContactMutation } from '../../store/contacts/contacts.api'
+import { useActions, useAppSelector } from '../../store/store'
 
 interface Props {
-    userId: number | null
     open: boolean
     onClose: () => void
+    params: ContactsParams
 }
 
-const CreateModal: React.FC<Props> = ({ userId, open, onClose }) => {
-    const { name, description, phone, group } = useAppSelector((state) => state.modals.createdInfo)
-    const { setCreatedInfo, resetCreateInfo } = useActions()
-    const [create, { isLoading, error }] = useCreateContactMutation()
+const EditModal: React.FC<Props> = ({ open, onClose, params }) => {
+    const contact = useAppSelector((state) => state.modals.editedContact)
+    const { changeEditedContact, resetEditedContact } = useActions()
+    const [update, { isLoading, error }] = useUpdateContactMutation()
 
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        if (!isLoading && !!userId) {
-            await create({
-                userId,
-                created_date: dayjs(),
-                updated_date: null,
-                blocked: false,
-                group,
-                name,
-                phone,
-                description
+        if (!isLoading && !!contact) {
+            await update({
+                updated: { 
+                    ...contact,
+                    updated_date: dayjs()
+                },
+                params
             }).unwrap()
             onClose()
-            resetCreateInfo()
+            resetEditedContact()
         }
     }
     const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target
-        setCreatedInfo({ [name]: name === 'group' && value === '' ? null : value })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        changeEditedContact({ [name]: value })
+    }, [])
+    const handleClose = useCallback(() => {
+        onClose()
+        resetEditedContact()
     }, [])
 
     return (
         <Modal
             open={open}
-            title='Create a new contact'
-            onClose={onClose}
+            title='Edit the contact'
+            onClose={handleClose}
         >
             <form onSubmit={onSubmit} autoComplete='off' className="mt-2 space-y-3">
                 <div className="rounded-md shadow-sm -space-y-1 flex flex-col gap-3">
                     <FormInput
-                        value={name}
+                        value={contact?.name ?? ''}
                         onChange={onChange}
                         name="name"
                         type="text"
@@ -59,7 +60,7 @@ const CreateModal: React.FC<Props> = ({ userId, open, onClose }) => {
                         placeholder="Name"
                     />
                     <Textarea
-                        value={description}
+                        value={contact?.description ?? ''}
                         onChange={onChange}
                         name="description"
                         placeholder="Description"
@@ -68,7 +69,7 @@ const CreateModal: React.FC<Props> = ({ userId, open, onClose }) => {
                         Phone
                         <Input
                             type='tel'
-                            value={phone}
+                            value={contact?.phone ?? ''}
                             onChange={onChange}
                             name="phone"
                             required
@@ -77,7 +78,7 @@ const CreateModal: React.FC<Props> = ({ userId, open, onClose }) => {
                         />
                     </label>
                     <FormSelect<Group>
-                        value={group ?? ''}
+                        value={contact?.group ?? ''}
                         onChange={onChange}
                         name="group"
                         options={groupSelect}>
@@ -87,17 +88,11 @@ const CreateModal: React.FC<Props> = ({ userId, open, onClose }) => {
                 {error && <Alert color='red' text={JSON.stringify((error as ErrorType)?.data)} />}
                 <div className="mt-4 flex gap-1">
                     <FormButton
-                        text='Create'
+                        text='Edit'
                         loading={false}
-                        lock={!name || !phone}
+                        lock={!contact?.name || !contact?.phone}
                     />
-                    <Button
-                        type="reset"
-                        onClick={() => {
-                            onClose()
-                            resetCreateInfo()
-                        }}
-                    >
+                    <Button type="reset" onClick={handleClose}>
                         Cancel
                     </Button>
                 </div>
@@ -106,4 +101,4 @@ const CreateModal: React.FC<Props> = ({ userId, open, onClose }) => {
     )
 }
 
-export default CreateModal
+export default EditModal

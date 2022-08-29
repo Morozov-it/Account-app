@@ -20,7 +20,15 @@ export const store = configureStore({
         [commonApi.reducerPath]: commonApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(commonApi.middleware)
+        getDefaultMiddleware({
+            serializableCheck: {
+                // Ignore these action types
+                ignoredActions: ['api/queries/queryResultPatched'],
+                // Ignore these paths in the state
+                ignoredPaths: ['api.queries'],
+            },
+        }
+        ).concat(commonApi.middleware)
 })
 
 //enable refetchOnMount and refetchOnReconnect behaviors

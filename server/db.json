@@ -11,47 +11,20 @@
       "password": "$2a$10$DBlIgPukohwJuh9Mi6L4lutlPizAUZroKy06vvj2rPkOqSpuZD2Ne",
       "name": "New name",
       "id": 2
+    },
+    {
+      "email": "admin@mail.com",
+      "password": "$2a$10$Xg6ecTu3a9KLxDGWLBIVK.lbNr.wkg.OcKiGnC8cwFHxh7GGzSyw.",
+      "name": "Admin",
+      "id": 3
     }
   ],
   "contacts": [
     {
-      "name": "My new contact",
-      "description": "my friend",
-      "phone": "8-800-2000-600",
-      "created_date": "2022-08-11T12:18:45.666Z",
-      "updated_date": "2022-08-11T12:18:45.666Z",
-      "group": "Friends",
-      "blocked": true,
-      "userId": 1,
-      "id": 1
-    },
-    {
-      "name": "Mark",
-      "description": "",
-      "phone": "8-800-2000-500",
-      "created_date": "2022-08-17",
-      "updated_date": "",
-      "group": "Family",
-      "blocked": false,
-      "userId": 1,
-      "id": 2
-    },
-    {
-      "name": "Test contact",
-      "description": "",
-      "phone": "+7-950-871-4672",
-      "created_date": "2022-08-26T16:01:45.666Z",
-      "updated_date": null,
-      "group": null,
-      "blocked": true,
-      "userId": 1,
-      "id": 3
-    },
-    {
       "userId": 1,
       "created_date": "2022-08-26T13:39:30.556Z",
-      "updated_date": null,
-      "blocked": false,
+      "updated_date": "2022-08-29T13:41:51.249Z",
+      "blocked": true,
       "group": "Work",
       "name": "Contact",
       "phone": "+7-900-800-7000",
@@ -60,36 +33,47 @@
     },
     {
       "userId": 1,
-      "created_date": "2022-08-26T13:42:12.930Z",
-      "updated_date": null,
-      "blocked": true,
-      "group": null,
-      "name": "Big bro",
-      "phone": "+7-900-800-7000",
-      "description": "Then, they heard a loud noise coming from a cupboard in the corner of the room. “What’s that?” Amy was frightened. “I didn’t hear anything,” said Kamal. Something was making strange noises. There was something inside the cupboard. “Oh no! What is it?” Amy was very frightened now. “What do you mean? There’s nothing there!” Kamal was trying not to smile. Suddenly the door opened with a bang and a zombie appeared, shouting and moving its arms. Amy screamed and covered her eyes. “Oh very funny, Grant!” said Tara looking bored. Kamal and Grant started laughing. “Ha ha, you were frightened!” said Grant. \"Do you like my zombie costume?” Amy took Tara’s arm. “I can’t breathe,” she said. Kamal looked worried now. “Is she OK? It was only a joke.” “No she’s not OK, you idiot. She’s having an asthma attack and she forgot her inhaler.” Tara took out her phone. “I’m calling her dad.”",
-      "id": 5
-    },
-    {
-      "userId": 1,
-      "created_date": "2022-08-26T13:55:21.856Z",
-      "updated_date": null,
+      "created_date": "2022-08-29T09:03:43.555Z",
+      "updated_date": "2022-08-29T12:33:15.349Z",
       "blocked": false,
-      "group": "Friends",
-      "name": "With group",
-      "phone": "+38-800-900-5000",
+      "group": null,
+      "name": "Test up",
+      "phone": "+7-800-900-5000",
       "description": "",
       "id": 6
     },
     {
       "userId": 1,
-      "created_date": "2022-08-26T14:47:15.255Z",
+      "created_date": "2022-08-29T13:48:47.591Z",
+      "updated_date": "2022-08-29T13:49:15.926Z",
+      "blocked": false,
+      "group": "Work",
+      "name": "Admin",
+      "phone": "+7-999-777-7799",
+      "description": "superior",
+      "id": 7
+    },
+    {
+      "userId": 1,
+      "created_date": "2022-08-29T13:50:20.735Z",
       "updated_date": null,
       "blocked": false,
-      "group": null,
-      "name": "Rendering",
-      "phone": "+38-100-200-3000",
-      "description": "",
-      "id": 7
+      "group": "Friends",
+      "name": "User",
+      "phone": "+86-960-750-4561",
+      "description": "Plain user",
+      "id": 8
+    },
+    {
+      "userId": 1,
+      "created_date": "2022-08-29T13:51:19.102Z",
+      "updated_date": "2022-08-29T13:51:35.878Z",
+      "blocked": false,
+      "group": "Family",
+      "name": "Woman",
+      "phone": "+7-920-718-0185",
+      "description": "super",
+      "id": 9
     }
   ]
 }

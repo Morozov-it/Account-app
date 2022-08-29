@@ -1,14 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { Modals, ModalState, NewContact } from "../../models"
+import { Contact, Modals, ModalState, NewContact } from "../../models"
 
 const initialState: ModalState = {
     active: null,
-    createInfo: {
+    createdInfo: {
         name: '',
         description: '',
         phone: '',
         group: null,
     },
+    editedContact: null
 }
 
 export const modalsSlice = createSlice({
@@ -18,14 +19,20 @@ export const modalsSlice = createSlice({
         toggleModal: (state, action: PayloadAction<Modals>) => {
             state.active = action.payload
         },
-        setCreateInfo: (state, action: PayloadAction<Partial<NewContact>>) => {
-            state.createInfo = {
-                ...state.createInfo,
-                ...action.payload
-            }
+        setCreatedInfo: (state, action: PayloadAction<Partial<NewContact>>) => {
+            Object.assign(state.createdInfo, action.payload)
+        },
+        setEditedContact: (state, action: PayloadAction<Contact>) => {
+            state.editedContact = action.payload
+        }, 
+        changeEditedContact: (state, action: PayloadAction<Partial<NewContact>>) => {
+            !!state.editedContact && Object.assign(state.editedContact, action.payload)
+        },
+        resetEditedContact: (state) => {
+            state.editedContact = initialState.editedContact
         },
         resetCreateInfo: (state) => {
-            state.createInfo = initialState.createInfo
+            state.createdInfo = initialState.createdInfo
         }
     }
 })
