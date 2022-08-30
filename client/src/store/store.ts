@@ -21,12 +21,7 @@ export const store = configureStore({
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
-            serializableCheck: {
-                // Ignore these action types
-                ignoredActions: ['api/queries/queryResultPatched'],
-                // Ignore these paths in the state
-                ignoredPaths: ['api.queries'],
-            },
+            serializableCheck: false,
         }
         ).concat(commonApi.middleware)
 })

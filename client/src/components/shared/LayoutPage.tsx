@@ -13,9 +13,15 @@ const LayoutPage: React.FC<Props> = ({ title, children }) => {
                     <h1 className="text-3xl tracking-tight font-bold text-gray-900 dark:text-slate-100">{title}</h1>
                 </div>
             </header>
-            <main className="flex-grow w-full max-w-7xl mx-auto px-2 py-4 overflow-y-auto">
+            <main className="flex-grow w-full max-w-7xl mx-auto px-2 pt-3 pb-2 overflow-auto">
                 {children}
             </main>
+            <footer className='p-1'>
+                <hr className="shadow w-full" />
+                <span className="block text-sm text-gray-500 text-center dark:text-gray-400">
+                    Copyright &copy; 2022 <a href="https://github.com/Morozov-it" target='_blank' className="hover:underline" rel="noreferrer">Morozov-it</a>
+                </span>
+            </footer>
         </section>
     )
 }

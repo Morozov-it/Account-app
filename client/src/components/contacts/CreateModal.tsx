@@ -1,12 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useCallback } from 'react'
 import dayjs from 'dayjs'
-import { Button, Input, Textarea } from '../controllers'
 import { useActions, useAppSelector } from '../../store/store'
-import { FormButton, FormInput, FormSelect } from '../form'
-import { Alert, Modal } from '../shared'
-import { ErrorType, Group } from '../../models'
-import { groupSelect, phonePattern } from '../../constants'
+import { Modal } from '../shared'
+import { ErrorType } from '../../models'
 import { useCreateContactMutation } from '../../store/contacts/contacts.api'
+import ContactForm from './ContactForm'
 
 interface Props {
     userId: number | null
@@ -39,7 +38,10 @@ const CreateModal: React.FC<Props> = ({ userId, open, onClose }) => {
     const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target
         setCreatedInfo({ [name]: name === 'group' && value === '' ? null : value })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+    const onReset = useCallback(() => {
+        onClose()
+        resetCreateInfo()
     }, [])
 
     return (
@@ -48,60 +50,16 @@ const CreateModal: React.FC<Props> = ({ userId, open, onClose }) => {
             title='Create a new contact'
             onClose={onClose}
         >
-            <form onSubmit={onSubmit} autoComplete='off' className="mt-2 space-y-3">
-                <div className="rounded-md shadow-sm -space-y-1 flex flex-col gap-3">
-                    <FormInput
-                        value={name}
-                        onChange={onChange}
-                        name="name"
-                        type="text"
-                        required
-                        placeholder="Name"
-                    />
-                    <Textarea
-                        value={description}
-                        onChange={onChange}
-                        name="description"
-                        placeholder="Description"
-                    />
-                    <label className="block text-sm font-medium">
-                        Phone
-                        <Input
-                            type='tel'
-                            value={phone}
-                            onChange={onChange}
-                            name="phone"
-                            required
-                            placeholder="+1-012-345-6789"
-                            pattern={phonePattern}
-                        />
-                    </label>
-                    <FormSelect<Group>
-                        value={group ?? ''}
-                        onChange={onChange}
-                        name="group"
-                        options={groupSelect}>
-                        Group
-                    </FormSelect>
-                </div>
-                {error && <Alert color='red' text={JSON.stringify((error as ErrorType)?.data)} />}
-                <div className="mt-4 flex gap-1">
-                    <FormButton
-                        text='Create'
-                        loading={false}
-                        lock={!name || !phone}
-                    />
-                    <Button
-                        type="reset"
-                        onClick={() => {
-                            onClose()
-                            resetCreateInfo()
-                        }}
-                    >
-                        Cancel
-                    </Button>
-                </div>
-            </form>
+            <ContactForm
+                values={{ name, description, phone, group }}
+                error={error as ErrorType}
+                loading={isLoading}
+                text='Create'
+                lock={!name || !phone}
+                onChange={onChange}
+                onReset={onReset}
+                onSubmit={onSubmit}
+            />
         </Modal>
     )
 }

@@ -27,7 +27,7 @@ const List = <T,>({ data, isLoading, isError, isSuccess, error, render }: Props<
     }
 
     return (
-        <div className="flex-[1_1_auto]">
+        <div className="flex-[1_1_auto] overflow-auto">
             {content}
         </div>
     )

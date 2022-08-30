@@ -1,13 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useCallback } from 'react'
 import dayjs from 'dayjs'
-import { Button, Input, Textarea } from '../controllers'
-import { FormButton, FormInput, FormSelect } from '../form'
-import { Alert, Modal } from '../shared'
-import { ErrorType, Group, ContactsParams } from '../../models'
-import { groupSelect, phonePattern } from '../../constants'
+import { Modal } from '../shared'
+import { ErrorType, ContactsParams } from '../../models'
 import { useUpdateContactMutation } from '../../store/contacts/contacts.api'
 import { useActions, useAppSelector } from '../../store/store'
+import ContactForm  from './ContactForm'
 
 interface Props {
     open: boolean
@@ -36,9 +34,9 @@ const EditModal: React.FC<Props> = ({ open, onClose, params }) => {
     }
     const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target
-        changeEditedContact({ [name]: value })
+        changeEditedContact({ [name]: name === 'group' && value === '' ? null : value })
     }, [])
-    const handleClose = useCallback(() => {
+    const onReset = useCallback(() => {
         onClose()
         resetEditedContact()
     }, [])
@@ -47,56 +45,23 @@ const EditModal: React.FC<Props> = ({ open, onClose, params }) => {
         <Modal
             open={open}
             title='Edit the contact'
-            onClose={handleClose}
+            onClose={onReset}
         >
-            <form onSubmit={onSubmit} autoComplete='off' className="mt-2 space-y-3">
-                <div className="rounded-md shadow-sm -space-y-1 flex flex-col gap-3">
-                    <FormInput
-                        value={contact?.name ?? ''}
-                        onChange={onChange}
-                        name="name"
-                        type="text"
-                        required
-                        placeholder="Name"
-                    />
-                    <Textarea
-                        value={contact?.description ?? ''}
-                        onChange={onChange}
-                        name="description"
-                        placeholder="Description"
-                    />
-                    <label className="block text-sm font-medium">
-                        Phone
-                        <Input
-                            type='tel'
-                            value={contact?.phone ?? ''}
-                            onChange={onChange}
-                            name="phone"
-                            required
-                            placeholder="+1-012-345-6789"
-                            pattern={phonePattern}
-                        />
-                    </label>
-                    <FormSelect<Group>
-                        value={contact?.group ?? ''}
-                        onChange={onChange}
-                        name="group"
-                        options={groupSelect}>
-                        Group
-                    </FormSelect>
-                </div>
-                {error && <Alert color='red' text={JSON.stringify((error as ErrorType)?.data)} />}
-                <div className="mt-4 flex gap-1">
-                    <FormButton
-                        text='Edit'
-                        loading={false}
-                        lock={!contact?.name || !contact?.phone}
-                    />
-                    <Button type="reset" onClick={handleClose}>
-                        Cancel
-                    </Button>
-                </div>
-            </form>
+            <ContactForm
+                values={{
+                    name: contact?.name ?? '',
+                    description: contact?.description ?? '',
+                    phone: contact?.phone ?? '',
+                    group: contact?.group ?? null
+                }}
+                error={error as ErrorType}
+                loading={isLoading}
+                text='Edit'
+                lock={!contact?.name || !contact?.phone}
+                onChange={onChange}
+                onReset={onReset}
+                onSubmit={onSubmit}
+            />
         </Modal>
     )
 }

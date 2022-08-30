@@ -23,9 +23,9 @@
     {
       "userId": 1,
       "created_date": "2022-08-26T13:39:30.556Z",
-      "updated_date": "2022-08-29T13:41:51.249Z",
+      "updated_date": "2022-08-30T07:29:18.555Z",
       "blocked": true,
-      "group": "Work",
+      "group": null,
       "name": "Contact",
       "phone": "+7-900-800-7000",
       "description": "Created in client",
@@ -33,20 +33,9 @@
     },
     {
       "userId": 1,
-      "created_date": "2022-08-29T09:03:43.555Z",
-      "updated_date": "2022-08-29T12:33:15.349Z",
-      "blocked": false,
-      "group": null,
-      "name": "Test up",
-      "phone": "+7-800-900-5000",
-      "description": "",
-      "id": 6
-    },
-    {
-      "userId": 1,
       "created_date": "2022-08-29T13:48:47.591Z",
       "updated_date": "2022-08-29T13:49:15.926Z",
-      "blocked": false,
+      "blocked": true,
       "group": "Work",
       "name": "Admin",
       "phone": "+7-999-777-7799",
@@ -65,15 +54,26 @@
       "id": 8
     },
     {
-      "userId": 1,
-      "created_date": "2022-08-29T13:51:19.102Z",
-      "updated_date": "2022-08-29T13:51:35.878Z",
+      "userId": 3,
+      "created_date": "2022-08-29T14:06:35.164Z",
+      "updated_date": "2022-08-30T06:53:14.880Z",
       "blocked": false,
-      "group": "Family",
-      "name": "Woman",
-      "phone": "+7-920-718-0185",
-      "description": "super",
-      "id": 9
+      "group": null,
+      "name": "Admin-contact",
+      "phone": "+7-999-800-7000",
+      "description": "test for admin account",
+      "id": 10
+    },
+    {
+      "userId": 3,
+      "created_date": "2022-08-30T06:17:07.488Z",
+      "updated_date": "2022-08-30T06:54:06.776Z",
+      "blocked": false,
+      "group": null,
+      "name": "New",
+      "phone": "+7-900-800-6000",
+      "description": "",
+      "id": 11
     }
   ]
 }
